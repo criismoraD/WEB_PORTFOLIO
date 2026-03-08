@@ -195,4 +195,97 @@
     });
   }
 
+  /* ----------------------------------------------------------
+     9. TYPING ANIMATION
+  ---------------------------------------------------------- */
+  var typingEl = document.getElementById('typingText');
+
+  if (typingEl) {
+    var roles = ['Technical Artist', '3D Generalist', 'Software Developer'];
+    var roleIndex = 0;
+    var charIndex = 0;
+    var isDeleting = false;
+    var typingSpeed = 100;
+
+    function type() {
+      var current = roles[roleIndex];
+
+      if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingEl.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      var delay = typingSpeed;
+
+      if (!isDeleting && charIndex === current.length) {
+        delay = 2000; // pause at full word
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        delay = 400;
+      } else if (isDeleting) {
+        delay = 50;
+      }
+
+      setTimeout(type, delay);
+    }
+
+    type();
+  }
+
+  /* ----------------------------------------------------------
+     10. CUSTOM CURSOR WITH GLOW
+  ---------------------------------------------------------- */
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+  if (!isTouchDevice) {
+    var dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    var ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    var mouseX = -100;
+    var mouseY = -100;
+    var ringX = -100;
+    var ringY = -100;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = 'translate(' + (mouseX - 4) + 'px, ' + (mouseY - 4) + 'px)';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.transform = 'translate(' + (ringX - 18) + 'px, ' + (ringY - 18) + 'px)';
+      requestAnimationFrame(animateRing);
+    }
+
+    animateRing();
+
+    // Expand ring on interactive elements
+    var interactives = document.querySelectorAll('a, button, .skill-card, .link-card, .image-container, input, textarea');
+    interactives.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover'); });
+    });
+
+    // Hide on mouse leave window
+    document.addEventListener('mouseleave', function () {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function () {
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    });
+  }
+
 })();

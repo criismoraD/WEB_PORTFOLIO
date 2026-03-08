@@ -48,7 +48,7 @@
       </div>
       <div class="descripcion">
         <span class="subtitle-label">Technical Artist</span>
-        <h1 class="texto-titulo">Christian Mora<br /><span class="accent">Technical Artist</span></h1>
+        <h1 class="texto-titulo">Christian Mora<br /><span class="accent typing-text" id="typingText"></span><span class="typing-cursor">|</span></h1>
         <p class="parrafo">
           Technical Artist con experiencia creando
           recursos 3D, personajes y entornos para videojuegos, publicidad
@@ -423,6 +423,34 @@
             <span>Antigravity</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="bloques_main reveal" id="contacto">
+      <div class="section-header">
+        <div class="section-icon">&#9993;</div>
+        <h3>Contacto</h3>
+      </div>
+      <div class="contact-wrapper">
+        <p class="contact-intro">¿Tienes un proyecto en mente? Escríbeme y hablemos.</p>
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" name="name" required placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Cuéntame sobre tu proyecto..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar mensaje</button>
+        </form>
       </div>
     </section>
   </main>
