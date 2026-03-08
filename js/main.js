@@ -240,27 +240,39 @@
   /* ----------------------------------------------------------
      10. CUSTOM CURSOR WITH GLOW
   ---------------------------------------------------------- */
-  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  // Only disable on pure touch devices (no mouse pointer)
+  var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
 
-  if (!isTouchDevice) {
+  if (hasFinePointer) {
     document.body.classList.add('custom-cursor');
 
     var dot = document.createElement('div');
     dot.className = 'cursor-dot';
+    dot.style.opacity = '0';
     var ring = document.createElement('div');
     ring.className = 'cursor-ring';
+    ring.style.opacity = '0';
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
-    var mouseX = -100;
-    var mouseY = -100;
-    var ringX = -100;
-    var ringY = -100;
+    var mouseX = 0;
+    var mouseY = 0;
+    var ringX = 0;
+    var ringY = 0;
+    var cursorVisible = false;
 
     document.addEventListener('mousemove', function (e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
       dot.style.transform = 'translate(' + (mouseX - 4) + 'px, ' + (mouseY - 4) + 'px)';
+
+      if (!cursorVisible) {
+        cursorVisible = true;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        ringX = mouseX;
+        ringY = mouseY;
+      }
     });
 
     function animateRing() {
