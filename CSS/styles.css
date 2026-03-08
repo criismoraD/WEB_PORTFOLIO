@@ -1058,7 +1058,6 @@ footer .footer-links a:hover {
   pointer-events: none;
   z-index: 9998;
   transition: transform 0.1s ease, opacity 0.3s ease;
-  mix-blend-mode: difference;
 }
 
 .cursor-ring {
@@ -1072,6 +1071,14 @@ footer .footer-links a:hover {
   pointer-events: none;
   z-index: 9997;
   transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+body.custom-cursor,
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor input,
+body.custom-cursor textarea {
+  cursor: none !important;
 }
 
 .cursor-ring.hover {

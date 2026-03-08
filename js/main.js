@@ -243,6 +243,8 @@
   var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   if (!isTouchDevice) {
+    document.body.classList.add('custom-cursor');
+
     var dot = document.createElement('div');
     dot.className = 'cursor-dot';
     var ring = document.createElement('div');
