@@ -104,6 +104,16 @@ header {
   transition: all var(--transition-fast);
 }
 
+.logo-link {
+  flex-shrink: 0;
+}
+
+nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 header.scrolled {
   background: rgba(10, 10, 11, 0.92);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
@@ -867,7 +877,9 @@ footer .footer-links a:hover {
   nav {
     position: fixed;
     top: 0;
+    left: auto;
     right: -100%;
+    transform: none;
     width: 280px;
     height: 100vh;
     background: rgba(16, 16, 20, 0.98);
@@ -1042,58 +1054,6 @@ footer .footer-links a:hover {
 
 @keyframes blink {
   50% { opacity: 0; }
-}
-
-/* ============================================================
-   CUSTOM CURSOR + GLOW
-   ============================================================ */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--accent-light);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.1s ease, opacity 0.3s ease;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(129, 140, 248, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9997;
-  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-}
-
-body.custom-cursor,
-body.custom-cursor a,
-body.custom-cursor button,
-body.custom-cursor input,
-body.custom-cursor textarea {
-  cursor: none !important;
-}
-
-.cursor-ring.hover {
-  width: 52px;
-  height: 52px;
-  border-color: var(--accent-color);
-  background: rgba(99, 102, 241, 0.08);
-}
-
-/* Hide custom cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
-  }
 }
 
 /* ============================================================
