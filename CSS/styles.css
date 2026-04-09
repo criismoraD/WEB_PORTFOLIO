@@ -104,6 +104,48 @@ body {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
+/* --- Advanced Animations --- */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  transition: transform var(--transition-smooth);
+}
+
+.shimmer-effect:hover::after {
+  animation: shimmer 1s ease-out forwards;
+}
+
 /* ============================================================
    HEADER
    ============================================================ */
@@ -446,6 +488,69 @@ nav ul li a.active {
 }
 
 /* ============================================================
+   TABS & TRAYECTORIA
+   ============================================================ */
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  position: relative;
+  transition: all var(--transition-smooth);
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -0.65rem;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent-color);
+  transition: width var(--transition-smooth);
+  border-radius: 50px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+}
+
+.tab-btn.active::after {
+  width: 100%;
+}
+
+.tab-content {
+  display: none;
+  animation: modalFadeIn 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ============================================================
    TIMELINE
    ============================================================ */
 .timeline {
@@ -557,59 +662,32 @@ nav ul li a.active {
 /* ============================================================
    SKILLS — TECHNICAL ABILITIES
    ============================================================ */
-.skills-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.skills-badges {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  list-style: none;
+  justify-content: center;
 }
 
-.skills-list > li {
+.skill-badge {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
-  transition: all var(--transition-smooth);
-}
-
-.skills-list > li:hover {
-  border-color: var(--border-hover);
-  background: var(--card-bg-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.skills-list b {
   color: var(--text-primary);
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  cursor: default;
 }
 
-.skills-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.skills-list ul li {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  padding: 0.2rem 0;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.skills-list ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 5px;
-  height: 5px;
+.skill-badge:hover {
   background: var(--accent-color);
-  border-radius: 50%;
-  transform: translateY(-50%);
+  border-color: var(--accent-light);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 /* ============================================================
@@ -667,6 +745,14 @@ nav ul li a.active {
   position: relative;
   overflow: hidden;
   cursor: default;
+}
+.skill-card.shimmer-effect::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .skill-card::before {

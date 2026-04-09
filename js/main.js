@@ -178,7 +178,24 @@
   }
 
   /* ----------------------------------------------------------
-     8. TILT EFFECT ON PROFILE IMAGE
+     8. TABS LOGIC
+  ---------------------------------------------------------- */
+  window.openTab = function (tabName) {
+    var i, tabContent, tabBtns;
+    tabContent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabContent.length; i++) {
+      tabContent[i].classList.remove("active");
+    }
+    tabBtns = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tabBtns.length; i++) {
+      tabBtns[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+  };
+
+  /* ----------------------------------------------------------
+     9. TILT EFFECT ON PROFILE IMAGE
   ---------------------------------------------------------- */
   var profileImg = document.querySelector('.profile-img');
 
@@ -201,7 +218,7 @@
   var typingEl = document.getElementById('typingText');
 
   if (typingEl) {
-    var roles = ['Technical Artist', '3D Generalist', 'Software Developer'];
+    var roles = ['Technical Artist', 'Software Developer'];
     var roleIndex = 0;
     var charIndex = 0;
     var isDeleting = false;
