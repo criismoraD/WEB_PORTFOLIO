@@ -572,7 +572,7 @@ nav ul li a.active {
   align-items: center;
   gap: 0.5rem;
   background: rgba(10, 10, 11, 0.6);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 30px;
   border: 1px solid rgba(88, 230, 88, 0.2);
   backdrop-filter: blur(10px);
@@ -584,6 +584,30 @@ nav ul li a.active {
 .lang-selector-floating:hover {
   border-color: rgba(88, 230, 88, 0.5);
   box-shadow: 0 4px 20px rgba(88, 230, 88, 0.15);
+}
+
+.lang-selector-floating .lang-btn {
+  display: flex;
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.lang-selector-floating .lang-btn:hover {
+  background: rgba(88, 230, 88, 0.1);
+}
+
+.lang-selector-floating .lang-btn.active {
+  border-color: var(--accent-color);
+  background: rgba(88, 230, 88, 0.1);
+}
+
+.lang-selector-floating .lang-btn svg {
+  display: block;
+  border-radius: 2px;
 }
 
 /* ============================================================
@@ -615,10 +639,10 @@ nav ul li a.active {
 
 .service-img-container {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Forzar formato cuadrado */
+  aspect-ratio: 3 / 1; /* Formato panorámico extremo solicitado */
   overflow: hidden;
   position: relative;
-  background: rgba(30, 30, 35, 0.3); /* Fondo neutro para iconos minimalistas */
+  background: rgba(30, 30, 35, 0.3); /* Fondo neutro */
 }
 
 .service-img-container img {

@@ -21,8 +21,8 @@ const translationsDict = {
     servBotsDesc: "Atención al cliente y procesos de negocio automatizados con Inteligencia Artificial.",
     servDesktopTitle: "Software de Escritorio",
     servDesktopDesc: "Herramientas administrativas y aplicaciones robustas para entornos Windows/Empresariales.",
-    servAutoTitle: "Automatizaciones Windows",
-    servAutoDesc: "Scripts avanzados para optimizar flujos de trabajo repetitivos y tareas de sistema.",
+    servAutoTitle: "Automatización & Scripting",
+    servAutoDesc: "Scripts con Python y PowerShell para optimizar flujos de trabajo repetitivos y tareas de sistema.",
     tabTrayectoria: "Trayectoria",
     tabSoftware: "Software & Tecnologías",
     catGames: "Motores de Videojuegos",
@@ -53,8 +53,8 @@ const translationsDict = {
     servBotsDesc: "Customer support and automated business processes powered by AI.",
     servDesktopTitle: "Desktop Software",
     servDesktopDesc: "Administrative tools and robust applications for Windows/Enterprise environments.",
-    servAutoTitle: "Windows Automations",
-    servAutoDesc: "Advanced scripts to optimize repetitive workflows and system tasks.",
+    servAutoTitle: "Automation & Scripting",
+    servAutoDesc: "Python and PowerShell scripts to optimize repetitive workflows and system tasks.",
     tabTrayectoria: "Career Path",
     tabSoftware: "Software & Technologies",
     catGames: "Game Engines",
@@ -126,11 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cargar idioma guardado o por defecto a ES
-    let savedLang = 'es';
+    // Lógica inteligente de detección:
+    // 1. Preferencia guardada en localStorage
+    // 2. Idioma del sistema (navigator.language)
+    // 3. Español por defecto
+    let initialLang = 'es';
     try {
-        savedLang = localStorage.getItem('preferredLang') || 'es';
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang) {
+            initialLang = savedLang;
+        } else {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang && browserLang.startsWith('en')) {
+                initialLang = 'en';
+            }
+        }
     } catch(e) {}
-    setLanguage(savedLang);
+    
+    setLanguage(initialLang);
 });
 })();

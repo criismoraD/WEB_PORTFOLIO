@@ -82,11 +82,23 @@
     <div class="header-right-spacer" aria-hidden="true"></div>
   </header>
   
-  <!-- Selector de Idioma Flotante -->
+  <!-- Selector de Idioma Flotante (Banderas SVG) -->
   <div class="lang-selector-floating">
-    <button class="lang-btn active" data-lang="es" aria-label="Español">🇪🇸 ESP</button>
+    <button class="lang-btn active" data-lang="es" aria-label="Español">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="24" height="24">
+        <path fill="#C60B1E" d="M36 27c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V9c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v18z"/>
+        <path fill="#FFC400" d="M0 12h36v12H0z"/>
+      </svg>
+    </button>
     <span class="lang-divider">|</span>
-    <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧 ING</button>
+    <button class="lang-btn" data-lang="en" aria-label="English">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="24" height="24">
+        <path fill="#3C3B6E" d="M32 5H4C1.791 5 0 6.791 0 9v18c0 2.209 1.791 4 4 4h28c2.209 0 4-1.791 4-4V9c0-2.209-1.791-4-4-4z"/>
+        <path fill="#EEE" d="M36 7.385V9.23h-20V5h3.692L36 7.385zm0 3.692v1.846h-20v-3.692h20v1.846zm0 3.692v1.846h-20v-3.692h20v1.846zm0 3.693v1.846H0v-3.692h36v1.846zm0 3.692v1.846H0v-3.692h36v1.846zM0 27.615V29.46h20v-3.692H0v1.847z"/>
+        <path fill="#3C3B6E" d="M0 5h16v13H0z"/>
+        <path fill="#EEE" d="M2 7l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2zM8 7l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2zM5 10l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2z"/>
+      </svg>
+    </button>
   </div>
 
   <!-- Main Content -->
@@ -554,11 +566,11 @@
         </div>
         <div class="service-card shimmer-effect">
           <div class="service-img-container">
-            <img src="img/serv_auto.png" alt="Windows Automation" loading="lazy" />
+            <img src="img/serv_auto.png" alt="Automation & Scripting" loading="lazy" />
           </div>
           <div class="service-info">
-            <h4 data-i18n="servAutoTitle">Automatizaciones Windows</h4>
-            <p data-i18n="servAutoDesc">Optimización de flujos de trabajo repetitivos mediante scripts avanzados y personalizaciones de sistema.</p>
+            <h4 data-i18n="servAutoTitle">Automatización & Scripting</h4>
+            <p data-i18n="servAutoDesc">Optimización de flujos de trabajo repetitivos mediante scripts avanzados en Python y PowerShell.</p>
           </div>
         </div>
       </div>
