@@ -2,7 +2,7 @@
    REX-3D PORTFOLIO — Professional Theme
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;400;500;600;700;800&family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
   --bg-color: #0a0a0b;
@@ -29,8 +29,8 @@
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 28px;
-  --font-main: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Creepster', var(--font-main);
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', var(--font-main);
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -100,14 +100,15 @@ body {
 /* --- Scroll Reveal Animations --- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(60px) scale(0.95);
+  transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
@@ -836,8 +837,17 @@ nav ul li a.active {
 }
 
 /* ============================================================
-   PORTFOLIO PAGE — IMAGE GRID
+   PORTFOLIO PAGE — IMAGE GRID & CAROUSEL
    ============================================================ */
+.portfolio-carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* subtle mask to fade out edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -846,15 +856,26 @@ nav ul li a.active {
 
 .portfolio-grid.carousel {
   display: flex;
-  overflow-x: auto;
-  gap: 1.5rem;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  gap: 2rem;
+  padding: 1rem 0 3rem 0;
+  /* hide native scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: auto; /* Handle smoothly in JS instead of CSS snap */
+}
+
+.portfolio-grid.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .portfolio-grid.carousel .image-container {
-  flex: 0 0 350px;
-  scroll-snap-align: start;
+  flex: 0 0 400px;
+  cursor: grab;
+}
+
+.portfolio-grid.carousel.active .image-container {
+  cursor: grabbing;
 }
 
 .image-container {
@@ -1280,9 +1301,9 @@ footer .footer-links a:hover {
 
 .btn-submit {
   align-self: flex-start;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa, #6366f1);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent-color), var(--accent-light), var(--accent-dark));
   background-size: 300% 300%;
-  color: white;
+  color: #000;
   border: none;
   padding: 0.85rem 2.5rem;
   border-radius: 50px;
