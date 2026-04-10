@@ -46,11 +46,10 @@ Este archivo registra las modificaciones y la estructura progresiva del portafol
 - **Layout Header**: Implementación de espaciadores flexibles para garantizar el centrado exacto de la navegación sobre el eje vertical de la página.
 - **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/i18n.js`.
 
-### [10-04-2026] Equilibrio de Intensidad V3.4
-- **Optimización Sensorial**: Eliminación del sonido de rayo para mantener un entorno de navegación silencioso.
-- **Ajuste de Visibilidad (Reducción 50%)**:
-    - **Densidad**: Conteo de partículas reducido a la mitad (máximo 60 en Overdrive).
-    - **Escala**: Reducción del tamaño radial de las partículas para un efecto más fino y menos invasivo.
-    - **Post-procesado**: El resplandor (*Glow*) y el desenfoque (*Blur*) se redujeron al 50% de su intensidad anterior.
-- **Mantenimiento**: Se conserva la sincronización con el Gato Rayo a los 8 clics, pero ahora con un impacto visual balanceado.
-- **Archivos afectados**: `js/canvasVFX.js`.
+### [10-04-2026] Refinamiento de Perfil y Navegación V3.7
+- **Actualización de Bio**: Reajuste de enfoque profesional de "Technical Artist / Arte Hiperrealista" a **"Programador y Diseñador 3D"** en todas las meta-descripciones y etiquetas OG.
+- **Mejora de UX**:
+    - **Navegación**: Inserción del acceso directo a **Habilidades** en el menú principal (`siteHeader`).
+    - **Estructura**: Asignación de `id="habilidades"` a la sección de skills para permitir el anclaje directo.
+- **i18n**: Adición de la clave `nav_skills` en los diccionarios de español e inglés.
+- **Archivos afectados**: `index.html`, `js/i18n.js`.

@@ -11,6 +11,7 @@ const translationsDict = {
   es: {
     nav_home: "Inicio",
     nav_portfolio: "Portafolio",
+    nav_skills: "Habilidades",
     nav_contact: "Contacto",
     aboutText: "Technical Artist con experiencia creando recursos 3D, entornos para Arquitectura, publicidad y diversas industrias. Actualmente ampliando mi perfil en desarrollo de software, combinando arte y código para ofrecer soluciones completas.",
     titleProjects: "Proyectos Destacados",
@@ -43,6 +44,7 @@ const translationsDict = {
   en: {
     nav_home: "Home",
     nav_portfolio: "Portfolio",
+    nav_skills: "Skills",
     nav_contact: "Contact",
     aboutText: "Technical Artist with experience creating 3D assets, environments for Architecture, advertising, and various industries. Currently expanding my profile in software development, combining art and code to deliver complete solutions.",
     titleProjects: "Featured Projects",
