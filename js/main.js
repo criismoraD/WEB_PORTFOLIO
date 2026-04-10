@@ -255,3 +255,364 @@
   }
 
 })();
+
+  /* ----------------------------------------------------------
+     10. INTERACTIVE PARTICLE BACKGROUND
+  ---------------------------------------------------------- */
+  var canvas = document.getElementById('particleCanvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var particleCount = 80;
+    var mouse = { x: null, y: null, radius: 100 };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    window.addEventListener('mousemove', function(e) {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+
+    // Handle scroll offset
+    var scrollY = window.scrollY;
+    window.addEventListener('scroll', function() {
+      var currentScroll = window.scrollY;
+      var scrollDiff = currentScroll - scrollY;
+      scrollY = currentScroll;
+
+      // Move particles with scroll
+      for(var i = 0; i < particles.length; i++) {
+        particles[i].y -= scrollDiff * 0.3; // Parallax effect
+
+        // Wrap around vertically
+        if(particles[i].y > canvas.height) {
+          particles[i].y = 0;
+        } else if (particles[i].y < 0) {
+          particles[i].y = canvas.height;
+        }
+      }
+    });
+
+    class Particle {
+      constructor(x, y, dx, dy, size) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.size = size;
+        this.baseX = this.x;
+        this.baseY = this.y;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.4)';
+        ctx.fill();
+      }
+
+      update() {
+        if (this.x > canvas.width || this.x < 0) {
+          this.dx = -this.dx;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+          this.dy = -this.dy;
+        }
+
+        // Mouse interaction
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          let forceDirectionX = dx / distance;
+          let forceDirectionY = dy / distance;
+          let force = (mouse.radius - distance) / mouse.radius;
+          let directionX = forceDirectionX * force * 5;
+          let directionY = forceDirectionY * force * 5;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          // Return to normal speed/direction slowly if displaced by mouse
+          this.x += this.dx;
+          this.y += this.dy;
+        }
+
+        this.draw();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      let numParticles = (canvas.width * canvas.height) / 12000;
+      for (let i = 0; i < numParticles; i++) {
+        let size = (Math.random() * 2) + 0.5;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        let dx = (Math.random() - 0.5) * 0.8;
+        let dy = (Math.random() - 0.5) * 0.8;
+        particles.push(new Particle(x, y, dx, dy, size));
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+            + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+          if (distance < (canvas.width / 10) * (canvas.height / 10)) {
+            let opacityValue = 1 - (distance / 20000);
+            ctx.strokeStyle = 'rgba(0, 255, 65,' + opacityValue * 0.3 + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+      }
+      connectParticles();
+    }
+
+    initParticles();
+    animateParticles();
+  }
+
+
+  /* ----------------------------------------------------------
+     11. INFINITE CAROUSEL LOGIC (DOUBLE DIRECTION)
+  ---------------------------------------------------------- */
+  const carousels = document.querySelectorAll('.portfolio-grid.carousel');
+  carousels.forEach(carousel => {
+    // Clone children to create infinite loop effect
+    const children = Array.from(carousel.children);
+    children.forEach(child => {
+      const clone = child.cloneNode(true);
+      carousel.appendChild(clone);
+    });
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Determine direction (1 for left, -1 for right)
+    const isRightScrolling = carousel.classList.contains('carousel-right');
+    let autoScrollSpeed = isRightScrolling ? -1 : 1;
+
+    // Set initial scroll position for right-scrolling carousel so it has room to scroll backwards
+    if (isRightScrolling) {
+      // Small timeout to ensure layout is calculated
+      setTimeout(() => {
+         carousel.scrollLeft = carousel.scrollWidth / 2;
+      }, 100);
+    }
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('active');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      autoScrollSpeed = 0; // stop auto scroll when dragging
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = isRightScrolling ? -1 : 1;
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = isRightScrolling ? -1 : 1;
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll fast
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Auto scrolling and infinite loop reset
+    function autoScroll() {
+      if (!isDown) {
+        carousel.scrollLeft += autoScrollSpeed;
+      }
+
+      // Infinite loop logic depending on direction
+      if (isRightScrolling) {
+        if (carousel.scrollLeft <= 0) {
+          carousel.scrollLeft = carousel.scrollWidth / 2;
+        }
+      } else {
+        if (carousel.scrollLeft >= (carousel.scrollWidth / 2)) {
+          carousel.scrollLeft = 0;
+        }
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    requestAnimationFrame(autoScroll);
+  });
+
+
+  /* ----------------------------------------------------------
+     12. ACCESSIBILITY: KEYBOARD NAVIGATION FOR CAROUSEL
+  ---------------------------------------------------------- */
+  const imageContainers = document.querySelectorAll('.image-container[role="button"]');
+  imageContainers.forEach(container => {
+    container.addEventListener('keydown', (e) => {
+      // Allow opening modal with Enter or Space
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        container.click();
+      }
+    });
+  });
+
+  /* ----------------------------------------------------------
+     13. LANGUAGE TRANSLATION
+  ---------------------------------------------------------- */
+  const translations = {
+    es: {
+      navHome: "Inicio",
+      navPortfolio: "Portafolio",
+      navContact: "Contacto",
+      subtitle: "Software Developer",
+      aboutText: "Technical Artist con experiencia creando recursos 3D, entornos para Arquitectura, publicidad y diversas industrias. Actualmente ampliando mi perfil en desarrollo de software, combinando arte y código para ofrecer soluciones completas.",
+      linksTitle: "Links",
+      skillsTitle: "Software & Tecnologías",
+      catDev: "Herramientas de Desarrollo",
+      cat3D: "Modelado y Escultura 3D",
+      catTexturing: "Texturizado",
+      catRender: "Motores de Render",
+      catVFX: "VFX y Simulación",
+      catPost: "Postproducción y Diseño",
+      contactTitle: "Contacto",
+      contactIntro: "¿Tienes un proyecto en mente? Escríbeme y hablemos.",
+      labelName: "Nombre",
+      placeholderName: "Tu nombre",
+      labelMessage: "Mensaje",
+      placeholderMessage: "Cuéntame sobre tu proyecto...",
+      submitBtn: "Enviar mensaje",
+      footerRights: "Todos los derechos reservados."
+    },
+    en: {
+      navHome: "Home",
+      navPortfolio: "Portfolio",
+      navContact: "Contact",
+      subtitle: "Software Developer",
+      aboutText: "Technical Artist with experience creating 3D assets and environments for Architecture, advertising, and various industries. Currently expanding my profile in software development, combining art and code to deliver complete solutions.",
+      linksTitle: "Links",
+      skillsTitle: "Software & Technologies",
+      catDev: "Development Tools",
+      cat3D: "3D Modeling & Sculpting",
+      catTexturing: "Texturing",
+      catRender: "Render Engines",
+      catVFX: "VFX & Simulation",
+      catPost: "Post-production & Design",
+      contactTitle: "Contact",
+      contactIntro: "Have a project in mind? Write to me and let's talk.",
+      labelName: "Name",
+      placeholderName: "Your name",
+      labelMessage: "Message",
+      placeholderMessage: "Tell me about your project...",
+      submitBtn: "Send message",
+      footerRights: "All rights reserved."
+    }
+  };
+
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const lang = btn.getAttribute('data-lang');
+      if(!lang) return;
+      const t = translations[lang];
+
+      const navLinks = document.querySelectorAll('#mainNav ul li a span');
+      const fallbackLinks = document.querySelectorAll('#mainNav ul li a');
+      if(navLinks.length >= 3) {
+        navLinks[0].textContent = t.navHome;
+        navLinks[1].textContent = t.navPortfolio;
+        navLinks[2].textContent = t.navContact;
+      } else if(fallbackLinks.length >= 3) {
+        fallbackLinks[0].childNodes[1] ? (fallbackLinks[0].childNodes[1].nodeValue = " " + t.navHome) : (fallbackLinks[0].textContent = t.navHome);
+        fallbackLinks[1].childNodes[1] ? (fallbackLinks[1].childNodes[1].nodeValue = " " + t.navPortfolio) : (fallbackLinks[1].textContent = t.navPortfolio);
+        fallbackLinks[2].childNodes[1] ? (fallbackLinks[2].childNodes[1].nodeValue = " " + t.navContact) : (fallbackLinks[2].textContent = t.navContact);
+      }
+
+      const subtitle = document.querySelector('.texto-titulo span:last-child');
+      if(subtitle) subtitle.textContent = t.subtitle;
+
+      const parrafo = document.querySelector('.parrafo');
+      if(parrafo) parrafo.textContent = t.aboutText;
+
+      const sectionHeaders = document.querySelectorAll('.section-header h3');
+      if(sectionHeaders.length >= 3) {
+        sectionHeaders[0].textContent = t.linksTitle;
+        sectionHeaders[1].textContent = lang === "es" ? "Proyectos Destacados" : "Featured Projects";
+        sectionHeaders[2].textContent = lang === "es" ? "Trayectoria" : "Experience";
+        sectionHeaders[3].textContent = "Skills";
+        sectionHeaders[4].textContent = t.skillsTitle;
+      }
+
+      const contactHeader = document.querySelector('#contacto h3');
+      if(contactHeader) contactHeader.textContent = t.contactTitle;
+
+      const categories = document.querySelectorAll('.tech-category-label');
+      categories.forEach(cat => {
+        if(cat.textContent.includes('Desarrollo')) cat.lastChild.nodeValue = " " + t.catDev;
+        else if(cat.textContent.includes('3D')) cat.lastChild.nodeValue = " " + t.cat3D;
+        else if(cat.textContent.includes('Texturizado') || cat.textContent.includes('Texturing')) cat.lastChild.nodeValue = " " + t.catTexturing;
+        else if(cat.textContent.includes('Render')) cat.lastChild.nodeValue = " " + t.catRender;
+        else if(cat.textContent.includes('VFX')) cat.lastChild.nodeValue = " " + t.catVFX;
+        else if(cat.textContent.includes('Postproducción') || cat.textContent.includes('Post-production')) cat.lastChild.nodeValue = " " + t.catPost;
+      });
+
+      const contactIntro = document.querySelector('.contact-intro');
+      if(contactIntro) contactIntro.textContent = t.contactIntro;
+
+      const labels = document.querySelectorAll('.form-group label');
+      if(labels.length >= 3) {
+        labels[0].textContent = t.labelName;
+        labels[2].textContent = t.labelMessage;
+      }
+
+      const nameInput = document.getElementById('name');
+      if(nameInput) nameInput.placeholder = t.placeholderName;
+
+      const msgInput = document.getElementById('message');
+      if(msgInput) msgInput.placeholder = t.placeholderMessage;
+
+      const submitBtn = document.querySelector('.btn-submit');
+      if(submitBtn) submitBtn.textContent = t.submitBtn;
+
+      const footerRights = document.querySelector('footer p');
+      if(footerRights) footerRights.innerHTML = `&copy; 2026 Christian Mora Damian. ${t.footerRights}`;
+    });
+  });

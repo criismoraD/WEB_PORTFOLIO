@@ -13,6 +13,9 @@
 
 <body>
 
+  <!-- Interactive Particle Background -->
+  <canvas id="particleCanvas"></canvas>
+
   <!-- Page Loader -->
   <div class="page-loader" id="pageLoader">
     <div class="loader-spinner"></div>
@@ -21,16 +24,22 @@
   <!-- Header -->
   <header id="siteHeader">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="img/logo.png" alt="Rex-3D Logo" />
+      <span class="logo-text">Christian Mora</span>
     </a>
 
     <nav id="mainNav">
       <ul>
-        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="#inicio" class="active">Inicio</a></li>
         <li><a href="#proyectos">Portafolio</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
+
+    <div class="lang-selector">
+      <button class="lang-btn active" data-lang="es" aria-label="Español">🇪🇸 ESP</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧 ING</button>
+    </div>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
       <span></span>
@@ -43,7 +52,7 @@
   <main class="main-content">
 
     <!-- About / Hero Section -->
-    <section class="sobremi reveal">
+    <section id="inicio" class="sobremi reveal">
       <div class="img-Titulo">
         <img src="img/profile.jpeg" alt="Christian Mora — Foto de perfil" class="profile-img" />
       </div>
@@ -62,7 +71,9 @@
     <!-- Links -->
     <section class="bloques_main reveal">
       <div class="section-header">
-        <div class="section-icon floating">&#128279;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        </div>
         <h3>Links</h3>
       </div>
       <div class="links-grid">
@@ -102,13 +113,16 @@
     </section>
 
     <!-- Proyectos Destacados -->
-    <section class="bloques_main reveal">
+    <section id="proyectos" class="bloques_main reveal">
       <div class="section-header">
-        <div class="section-icon floating">&#128444;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        </div>
         <h3>Proyectos Destacados</h3>
       </div>
-      <div class="portfolio-grid">
-        <div class="image-container shimmer-effect"
+      <div class="portfolio-wrapper">
+        <div class="portfolio-grid carousel carousel-left">
+<div class="image-container" role="button" tabindex="0"
           onclick="openModal('https://cdna.artstation.com/p/assets/images/images/025/024/552/large/chrisitian-mora-damian-001.jpg?1584344375')">
           <img
             src="https://cdna.artstation.com/p/assets/images/images/025/024/552/large/chrisitian-mora-damian-001.jpg?1584344375"
@@ -117,7 +131,7 @@
             <span class="description">Crash Bandicoot</span>
           </div>
         </div>
-        <div class="image-container shimmer-effect"
+<div class="image-container" role="button" tabindex="0"
           onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/048/819/977/large/chrisitian-mora-damian-000.jpg?1651009254')">
           <img
             src="https://cdnb.artstation.com/p/assets/images/images/048/819/977/large/chrisitian-mora-damian-000.jpg?1651009254"
@@ -126,7 +140,7 @@
             <span class="description">Doodle Girl</span>
           </div>
         </div>
-        <div class="image-container shimmer-effect"
+<div class="image-container" role="button" tabindex="0"
           onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/025/025/537/large/chrisitian-mora-damian-4k-cerdo.jpg?1584348313')">
           <img
             src="https://cdnb.artstation.com/p/assets/images/images/025/025/537/large/chrisitian-mora-damian-4k-cerdo.jpg?1584348313"
@@ -135,13 +149,71 @@
             <span class="description">Inosuke</span>
           </div>
         </div>
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/048/692/207/large/chrisitian-mora-damian-000.jpg?1650668311')">
+          <img
+            src="https://cdnb.artstation.com/p/assets/images/images/048/692/207/large/chrisitian-mora-damian-000.jpg?1650668311"
+            alt="Teléfono PBR" loading="lazy" />
+          <div class="overlay">
+            <span class="description">Teléfono PBR</span>
+          </div>
+        </div>
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://cdna.artstation.com/p/assets/images/images/048/372/150/large/chrisitian-mora-damian-021-front.jpg?1649868710')">
+          <img
+            src="https://cdna.artstation.com/p/assets/images/images/048/372/150/large/chrisitian-mora-damian-021-front.jpg?1649868710"
+            alt="Lima Puzzle" loading="lazy" />
+          <div class="overlay">
+            <span class="description">Lima Puzzle</span>
+          </div>
+        </div>
+        </div>
+        <div class="portfolio-grid carousel carousel-right">
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://img-new.cgtrader.com/items/786944/eaf163bfe2/teeth-3d-model-eaf163bfe2.jpg')">
+          <img src="https://img-new.cgtrader.com/items/786944/eaf163bfe2/teeth-3d-model-eaf163bfe2.jpg" alt="Dientes"
+            loading="lazy" />
+          <div class="overlay">
+            <span class="description">Dientes</span>
+          </div>
+        </div>
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/005/776/491/large/chrisitian-alfredo-mora-damian-006.jpg?1493697887')">
+          <img
+            src="https://cdnb.artstation.com/p/assets/images/images/005/776/491/large/chrisitian-alfredo-mora-damian-006.jpg?1493697887"
+            alt="LowPoly" loading="lazy" />
+          <div class="overlay">
+            <span class="description">LowPoly</span>
+          </div>
+        </div>
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/074/940/441/large/chrisitian-mora-damian-sin-titulo-1.jpg?1713348075')">
+          <img
+            src="https://cdnb.artstation.com/p/assets/images/images/074/940/441/large/chrisitian-mora-damian-sin-titulo-1.jpg?1713348075"
+            alt="Cera Triceratops" loading="lazy" />
+          <div class="overlay">
+            <span class="description">Cera Triceratops</span>
+          </div>
+        </div>
+<div class="image-container" role="button" tabindex="0"
+          onclick="openModal('https://cdnb.artstation.com/p/assets/images/images/074/940/745/large/chrisitian-mora-damian-subir.jpg?1713348561')">
+          <img
+            src="https://cdnb.artstation.com/p/assets/images/images/074/940/745/large/chrisitian-mora-damian-subir.jpg?1713348561"
+            alt="Interior" loading="lazy" />
+          <div class="overlay">
+            <span class="description">Interior</span>
+          </div>
+        </div>
+        </div>
       </div>
     </section>
 
     <!-- Trayectoria (Experiencia & Educación) -->
     <section class="bloques_main reveal" id="trayectoria">
       <div class="section-header">
-        <div class="section-icon floating">&#128188;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        </div>
         <h3>Trayectoria</h3>
       </div>
 
@@ -248,34 +320,68 @@
     <!-- Habilidades Técnicas (Skills Badges) -->
     <section class="bloques_main reveal">
       <div class="section-header">
-        <div class="section-icon floating">&#9881;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
         <h3>Skills</h3>
       </div>
       <div class="skills-badges">
-        <span class="skill-badge">High & Low Poly Modeling</span>
-        <span class="skill-badge">Realtime Performance Optimization</span>
-        <span class="skill-badge">Procedural Content Creation</span>
-        <span class="skill-badge">Materials & Shaders</span>
-        <span class="skill-badge">Texturizado PBR</span>
-        <span class="skill-badge">Scene Lighting</span>
-        <span class="skill-badge">Fluid Simulations & VFX</span>
-        <span class="skill-badge">Postproducción</span>
-        <span class="skill-badge">Modelado CAD</span>
-        <span class="skill-badge">Scripting & Programación</span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          High & Low Poly Modeling
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Realtime Performance Optimization
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>
+          Procedural Content Creation
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-droplet"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          Materials & Shaders
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+          Texturizado PBR
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          Scene Lighting
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-wind"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>
+          Fluid Simulations & VFX
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-film"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          Postproducción
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+          Modelado CAD
+        </span>
+        <span class="skill-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          Scripting & Programación
+        </span>
       </div>
     </section>
 
     <!-- Software & Tecnologías — Organizado por categorías -->
     <section class="bloques_main reveal">
       <div class="section-header">
-        <div class="section-icon floating">&#128187;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
         <h3>Software &amp; Tecnologías</h3>
       </div>
 
       <!-- Lenguajes de Programación -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#60;&#47;&#62;</span> Lenguajes de Programación
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span> Lenguajes de Programación
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -304,7 +410,7 @@
       <!-- Motores de Videojuegos -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#127918;</span> Motores de Videojuegos
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></span> Motores de Videojuegos
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -325,7 +431,7 @@
       <!-- Modelado y Escultura 3D -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#9997;</span> Modelado y Escultura 3D
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></span> Modelado y Escultura 3D
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -350,7 +456,7 @@
       <!-- Texturizado -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#127912;</span> Texturizado
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></span> Texturizado
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -367,7 +473,7 @@
       <!-- Motores de Render -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#128161;</span> Motores de Render
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span> Motores de Render
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -384,7 +490,7 @@
       <!-- VFX y Simulación -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#128165;</span> VFX y Simulación
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-wind"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></span> VFX y Simulación
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -397,7 +503,7 @@
       <!-- Postproducción y Diseño -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#127909;</span> Postproducción y Diseño
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-film"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg></span> Postproducción y Diseño
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -422,7 +528,7 @@
       <!-- Herramientas de Desarrollo -->
       <div class="tech-category">
         <div class="tech-category-label">
-          <span class="cat-icon">&#128736;</span> Herramientas de Desarrollo
+          <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tool"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span> Herramientas de Desarrollo
         </div>
         <div class="skills-grid">
           <div class="skill-card shimmer-effect">
@@ -447,7 +553,9 @@
     <!-- Contacto -->
     <section class="bloques_main reveal" id="contacto">
       <div class="section-header">
-        <div class="section-icon floating">&#9993;</div>
+        <div class="section-icon floating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
         <h3>Contacto</h3>
       </div>
       <div class="contact-wrapper">
@@ -485,7 +593,9 @@
   </footer>
 
   <!-- Back to Top -->
-  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">&#8593;</button>
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>
