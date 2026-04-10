@@ -206,8 +206,31 @@ nav {
   align-items: center;
 }
 
-.header-right-spacer {
-  flex: 1; /* Equilibra el peso del logo del lado derecho */
+.header-lang-wrapper {
+  flex: 1; /* Equilibra el peso del logo del lado izquierdo */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lang-selector-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-selector-header .lang-btn svg,
+.lang-selector-header .lang-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.lang-selector-header .lang-text {
+  display: none;
 }
 
 header.scrolled {
@@ -261,8 +284,8 @@ header.scrolled .logo-text {
 }
 
 .lang-btn.active {
-  color: var(--accent-color);
-  text-shadow: 0 0 8px var(--accent-glow);
+  color: var(--accent-light);
+  transform: scale(1.1);
 }
 
 .lang-divider {
@@ -561,56 +584,44 @@ nav ul li a.active {
 }
 
 /* ============================================================
-   LANG SELECTOR FLOATING (Hero top)
+   HEADER LANGUAGE SELECTOR
    ============================================================ */
-.lang-selector-floating {
-  position: absolute; /* En lugar de fixed, así hace scroll */
-  top: 90px;
-  right: 2rem;
-  z-index: 998;
+.header-lang-wrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(10, 10, 11, 0.6);
-  padding: 0.4rem 0.8rem;
-  border-radius: 30px;
-  border: 1px solid rgba(88, 230, 88, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all var(--transition-fast);
 }
 
-.lang-selector-floating:hover {
-  border-color: rgba(88, 230, 88, 0.5);
-  box-shadow: 0 4px 20px rgba(88, 230, 88, 0.15);
-}
-
-.lang-selector-floating .lang-btn {
+.lang-selector-header {
   display: flex;
-  padding: 0.3rem;
-  border-radius: 50%;
-  transition: all var(--transition-fast);
-  border: 2px solid transparent;
-  background: transparent;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--accent-subtle);
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.lang-selector-header .lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
   cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
 }
 
-.lang-selector-floating .lang-btn:hover {
-  background: rgba(88, 230, 88, 0.1);
+.lang-selector-header .lang-btn.active {
+  background: var(--accent-color);
+  color: white;
 }
 
-.lang-selector-floating .lang-btn.active {
-  border-color: var(--accent-color);
-  background: rgba(88, 230, 88, 0.1);
-}
-
-.lang-selector-floating .lang-btn svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px; /* Un poco redondeado internamente para suavizar */
-  object-fit: contain;
+@media (max-width: 768px) {
+  .nav-text {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -1654,12 +1665,69 @@ nav ul li a .nav-icon {
     padding: 0 1rem; /* Margen para pantallas pequeñas */
   }
 
-  /* Selector de idiomas flotante (ajustes para móvil) */
-  .lang-selector-floating {
-    top: 75px; /* Un poco más arriba en móvil */
-    right: 1rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+  /* Switch style lang selector en móvil */
+  /* Switch style lang selector en móvil */
+  .lang-selector-header {
+    background: rgba(40, 40, 45, 0.6);
+    border-radius: 20px;
+    padding: 3px;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    position: relative;
+    display: flex;
+  }
+
+  /* El bloque deslizante (la luz del switch) */
+  .lang-selector-header::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    background: var(--accent-color);
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0,255,65,0.4);
+    z-index: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Si el idioma de la página es inglés, deslizar a la derecha */
+  html[lang="en"] .lang-selector-header::before {
+    transform: translateX(100%);
+  }
+
+  .lang-divider {
+    display: none !important;
+  }
+
+  .lang-selector-header .lang-btn {
+    padding: 6px 12px;
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 15px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lang-selector-header .lang-icon {
+    display: none !important;
+  }
+
+  .lang-selector-header .lang-text {
+    display: block !important;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+  }
+
+  .lang-selector-header .lang-btn.active .lang-text {
+    color: #000; /* Texto oscuro para destacar sobre el neón verde */
   }
   
   .logo-text {
@@ -1683,39 +1751,34 @@ nav ul li a .nav-icon {
     white-space: nowrap; /* Obliga a mantener todo en 1 sola línea */
   }
 
-  /* Bottom Navigation Bar for Mobile */
+  /* Navigation Bar for Mobile (Inside Header) */
   nav {
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 70px;
-    background: rgba(16, 16, 20, 0.98);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-color);
-    border-left: none;
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
     padding: 0;
-    z-index: 999;
-    transform: none !important; /* Override any JS logic */
+    flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    transform: none !important;
   }
 
   nav ul {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0;
-    padding: 0 1rem;
-    gap: 0;
+    padding: 0;
+    gap: 0.5rem;
   }
 
   nav ul li {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
   }
@@ -1725,17 +1788,19 @@ nav ul li a .nav-icon {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.25rem;
-    font-size: 0.75rem;
     padding: 0.5rem;
-    border-radius: 0;
+    border-radius: 8px;
     color: var(--text-muted);
   }
 
-  /* Show icons and align correctly on mobile */
+  /* Show icons and hide text on mobile */
   nav ul li a .nav-icon {
-    display: block;
+    display: block !important;
     margin-bottom: 2px;
+  }
+  
+  nav ul li a .nav-text {
+    display: none !important;
   }
 
   nav ul li a:hover,
@@ -1744,9 +1809,9 @@ nav ul li a .nav-icon {
     color: var(--accent-light);
   }
 
-  /* Add padding to the bottom of the main content so the bottom nav doesn't overlap */
+  /* Remove bottom padding since nav is at the top again */
   .main-content {
-    padding-bottom: 80px; 
+    padding-bottom: 0px; 
   }
 }
 
