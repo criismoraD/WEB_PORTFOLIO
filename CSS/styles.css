@@ -84,7 +84,7 @@ html {
 body {
   font-family: var(--font-main);
   background-color: var(--bg-color);
-  background-image: var(--gradient-bg);
+  /* background-image: var(--gradient-bg); removed for vignette */
   color: var(--text-primary);
   font-size: 16.5px;
   line-height: 1.7;
@@ -1345,4 +1345,151 @@ footer .footer-links a:hover {
     width: 100%;
     text-align: center;
   }
+}
+
+/* ============================================================
+   ACCESSIBILITY - FOCUS STATES
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px var(--accent-subtle);
+  border-radius: var(--radius-sm);
+  transition: outline-color var(--transition-fast);
+}
+
+.image-container:focus-visible {
+  border-color: var(--accent-light);
+  outline-offset: 6px;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) scale(1.02);
+}
+
+.image-container:focus-visible .overlay {
+  opacity: 1;
+}
+
+.image-container:focus-visible .description {
+  transform: translateY(0);
+}
+
+.lang-btn:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Double Carousel Styles */
+.portfolio-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.portfolio-grid.carousel {
+  padding: 0.5rem 0 1rem 0; /* Reduced padding between the two rows */
+}
+
+/* Ensure the right-scrolling carousel starts from the end so it doesn't snap initially */
+.portfolio-grid.carousel-right {
+  direction: rtl; /* simple trick to make children flow right-to-left initially for clone layout */
+}
+.portfolio-grid.carousel-right > * {
+  direction: ltr; /* reset content inside */
+}
+
+/* Hide icons on desktop, show only text */
+nav ul li a .nav-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide the hamburger menu completely */
+  .menu-toggle {
+    display: none !important;
+  }
+
+  /* Make header smaller and handle layout without menu toggle */
+  header {
+    height: 60px;
+    justify-content: space-between;
+  }
+
+  /* Bottom Navigation Bar for Mobile */
+  nav {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(16, 16, 20, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-color);
+    border-left: none;
+    padding: 0;
+    z-index: 999;
+    transform: none !important; /* Override any JS logic */
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 1rem;
+    gap: 0;
+  }
+
+  nav ul li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0;
+    color: var(--text-muted);
+  }
+
+  /* Show icons and align correctly on mobile */
+  nav ul li a .nav-icon {
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  nav ul li a:hover,
+  nav ul li a:active {
+    background: transparent;
+    color: var(--accent-light);
+  }
+
+  /* Add padding to the bottom of the main content so the bottom nav doesn't overlap */
+  .main-content {
+    padding-bottom: 80px;
+  }
+}
+
+/* ============================================================
+   VIGNETTE / SPOTLIGHT EFFECT
+   ============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 255, 65, 0.12) 0%, rgba(10, 10, 11, 0.7) 60%, rgba(5, 5, 6, 0.95) 100%);
+  pointer-events: none;
+  z-index: 0;
 }
