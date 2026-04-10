@@ -180,7 +180,7 @@
   /* ----------------------------------------------------------
      8. TABS LOGIC
   ---------------------------------------------------------- */
-  window.openTab = function (evt, tabName) {
+  window.openTab = function (tabName) {
     var i, tabContent, tabBtns;
     tabContent = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabContent.length; i++) {
@@ -191,9 +191,7 @@
       tabBtns[i].classList.remove("active");
     }
     document.getElementById(tabName).classList.add("active");
-    if (evt && evt.currentTarget) {
-      evt.currentTarget.classList.add("active");
-    }
+    event.currentTarget.classList.add("active");
   };
 
   /* ----------------------------------------------------------

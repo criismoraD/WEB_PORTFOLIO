@@ -583,9 +583,9 @@ nav ul li a.active {
 }
 
 @keyframes pulseDot {
-  0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
 }
 
 .timeline-dot {
@@ -686,11 +686,11 @@ nav ul li a.active {
 }
 
 .skill-badge:hover {
-  background: var(--accent-dark);
+  background: var(--accent-color);
   border-color: var(--accent-light);
   color: white;
-  transform: perspective(500px) rotateX(20deg) translateY(-5px) translateZ(10px);
-  box-shadow: 0 15px 25px rgba(0, 255, 65, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 /* ============================================================
@@ -1261,7 +1261,7 @@ footer .footer-links a:hover {
 
 .btn-submit {
   align-self: flex-start;
-  background: linear-gradient(135deg, #00ff41, #008f11, #00ff66, #00ff41);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa, #6366f1);
   background-size: 300% 300%;
   color: white;
   border: none;
