@@ -85,18 +85,20 @@
   <!-- Selector de Idioma Flotante (Banderas SVG) -->
   <div class="lang-selector-floating">
     <button class="lang-btn active" data-lang="es" aria-label="Español">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="24" height="24">
-        <path fill="#C60B1E" d="M36 27c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V9c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v18z"/>
-        <path fill="#FFC400" d="M0 12h36v12H0z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+        <rect width="512" height="512" fill="#ffc400"/>
+        <rect width="512" height="128" fill="#c60b1e"/>
+        <rect width="512" height="128" y="384" fill="#c60b1e"/>
       </svg>
     </button>
     <span class="lang-divider">|</span>
     <button class="lang-btn" data-lang="en" aria-label="English">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="24" height="24">
-        <path fill="#3C3B6E" d="M32 5H4C1.791 5 0 6.791 0 9v18c0 2.209 1.791 4 4 4h28c2.209 0 4-1.791 4-4V9c0-2.209-1.791-4-4-4z"/>
-        <path fill="#EEE" d="M36 7.385V9.23h-20V5h3.692L36 7.385zm0 3.692v1.846h-20v-3.692h20v1.846zm0 3.692v1.846h-20v-3.692h20v1.846zm0 3.693v1.846H0v-3.692h36v1.846zm0 3.692v1.846H0v-3.692h36v1.846zM0 27.615V29.46h20v-3.692H0v1.847z"/>
-        <path fill="#3C3B6E" d="M0 5h16v13H0z"/>
-        <path fill="#EEE" d="M2 7l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2zM8 7l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2zM5 10l1 2h2l-1.5 1 1 2-1.5-1-1.5 1 1-2-1.5-1h2z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+        <rect width="512" height="512" fill="#00247d"/>
+        <path d="M0 0l512 512M512 0L0 512" stroke="#fff" stroke-width="64"/>
+        <path d="M0 0l512 512M512 0L0 512" stroke="#cf142b" stroke-width="32"/>
+        <path d="M256 0v512M0 256h512" stroke="#fff" stroke-width="96"/>
+        <path d="M256 0v512M0 256h512" stroke="#cf142b" stroke-width="64"/>
       </svg>
     </button>
   </div>
@@ -915,24 +917,8 @@
     </div>
     <p data-i18n="footerRights">&copy; 2026 Christian Mora Damian. Todos los derechos reservados.</p>
     
-    <!-- Easter Egg Clandestino -->
-    <img src="img/gato_rayo.gif" alt="Easter Egg" id="easterCat" style="display:none; position:fixed; bottom:20px; right:20px; width:150px; z-index:9999; pointer-events:none; border-radius: 10px; box-shadow: 0 0 20px rgba(88, 230, 88, 0.5);" />
-    <script>
-      let avatarClicks = 0;
-      document.querySelector('.profile-img').addEventListener('click', (e) => {
-        avatarClicks++;
-        if (avatarClicks === 5) {
-          const gato = document.getElementById('easterCat');
-          gato.style.display = 'block';
-          gato.animate([{opacity: 0, transform: 'translateY(50px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: 500, fill: 'forwards'});
-          setTimeout(() => {
-            gato.animate([{opacity: 1}, {opacity: 0}], {duration: 1000, fill: 'forwards'}).onfinish = () => gato.style.display = 'none';
-            avatarClicks = 0;
-          }, 4000);
-        }
-        setTimeout(() => { if(avatarClicks < 5) avatarClicks = 0; }, 2000);
-      });
-    </script>
+    <!-- Easter Egg Clandestino (Controlado por canvasVFX.js) -->
+    <img src="img/gato_rayo.gif" alt="Easter Egg" id="easterCat" style="display:none; position:fixed; bottom:20px; right:20px; width:150px; z-index:9999; pointer-events:none;" />
   </footer>
 
   <!-- Back to Top -->

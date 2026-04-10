@@ -35,3 +35,22 @@ Este archivo registra las modificaciones y la estructura progresiva del portafol
 - **Cambio**: Se eliminó la clase `active` del botón "Inicio" en el `index.html`.
 - **Razón**: El botón de Inicio tenía un formato resaltado (verde brillante y fondo oscuro) que no coincidía con los otros botones ("Portafolio" y "Contacto") al cargar la página. Ahora todos guardan la misma estética uniforme.
 - **Archivo afectado**: `index.html`
+
+### [10-04-2026] Refinamiento V3.0: i18n Inteligente y Layout Panorámico
+- **Internacionalización**: Implementación de detección de idioma proactiva mediante `navigator.language` (Redirección automática a ENG/SPN).
+- **Iconografía**: Sustitución de selectores de texto por **Banderas SVG** de alta fidelidad para un diseño más limpio y universal.
+- **Rediseño de Servicios**:
+    - **Formato**: Transición a un layout panorámico extremo (**aspect-ratio: 3:1**).
+    - **Contenido**: Evolución de "Automatización Windows" a **"Automatización & Scripting"**, integrando Python y PowerShell en el discurso técnico.
+    - **Activos**: Restauración de imágenes minimalistas ("ligeras") para reducir el ruido visual.
+- **Layout Header**: Implementación de espaciadores flexibles para garantizar el centrado exacto de la navegación sobre el eje vertical de la página.
+- **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/i18n.js`.
+
+### [10-04-2026] Equilibrio de Intensidad V3.4
+- **Optimización Sensorial**: Eliminación del sonido de rayo para mantener un entorno de navegación silencioso.
+- **Ajuste de Visibilidad (Reducción 50%)**:
+    - **Densidad**: Conteo de partículas reducido a la mitad (máximo 60 en Overdrive).
+    - **Escala**: Reducción del tamaño radial de las partículas para un efecto más fino y menos invasivo.
+    - **Post-procesado**: El resplandor (*Glow*) y el desenfoque (*Blur*) se redujeron al 50% de su intensidad anterior.
+- **Mantenimiento**: Se conserva la sincronización con el Gato Rayo a los 8 clics, pero ahora con un impacto visual balanceado.
+- **Archivos afectados**: `js/canvasVFX.js`.
