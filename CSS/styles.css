@@ -2,35 +2,35 @@
    REX-3D PORTFOLIO — Professional Theme
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;400;500;600;700;800&family=Creepster&display=swap');
 
 :root {
   --bg-color: #0a0a0b;
-  --bg-secondary: #111113;
-  --card-bg: #16161a;
-  --card-bg-hover: #1c1c21;
-  --text-primary: #ececf1;
-  --text-secondary: #8e8ea0;
-  --text-muted: #565669;
-  --accent-color: #6366f1;
-  --accent-light: #818cf8;
-  --accent-dark: #4f46e5;
-  --accent-glow: rgba(99, 102, 241, 0.25);
-  --accent-subtle: rgba(99, 102, 241, 0.08);
-  --gradient-accent: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
-  --gradient-bg: linear-gradient(180deg, #0a0a0b 0%, #111113 100%);
-  --border-color: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(99, 102, 241, 0.3);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+  --bg-secondary: #0d120d;
+  --card-bg: #111a11;
+  --card-bg-hover: #162416;
+  --text-primary: #e0ffe0;
+  --text-secondary: #a3cda3;
+  --text-muted: #6b8f6b;
+  --accent-color: #00ff41;
+  --accent-light: #00ff66;
+  --accent-dark: #008f11;
+  --accent-glow: rgba(0, 255, 65, 0.25);
+  --accent-subtle: rgba(0, 255, 65, 0.08);
+  --gradient-accent: linear-gradient(135deg, #00ff41, #00ff66, #008f11);
+  --gradient-bg: linear-gradient(180deg, #0a0a0b 0%, #0d120d 100%);
+  --border-color: rgba(0, 255, 65, 0.15);
+  --border-hover: rgba(0, 255, 65, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 40px rgba(0, 255, 65, 0.25);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 28px;
   --font-main: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Space Grotesk', var(--font-main);
+  --font-display: 'Creepster', var(--font-main);
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -357,12 +357,14 @@ nav ul li a.active {
 
 .texto-titulo {
   font-family: var(--font-display);
-  font-size: 2.8rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 400;
   margin: 0 0 1.5rem 0;
-  color: var(--text-primary);
+  color: var(--accent-light);
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  text-shadow: 3px 3px 0px #ff00ff, -3px -3px 0px #00ffff;
+  transform: perspective(500px) rotateY(-5deg);
 }
 
 .texto-titulo .accent {
@@ -469,10 +471,10 @@ nav ul li a.active {
 }
 
 .link-card:hover {
-  transform: translateY(-4px);
+  transform: perspective(600px) rotateX(15deg) translateY(-8px);
   background: var(--card-bg-hover);
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.08);
+  box-shadow: var(--shadow-md), 0 15px 30px rgba(0, 255, 65, 0.3);
 }
 
 .link-card span {
@@ -595,7 +597,7 @@ nav ul li a.active {
   background: var(--accent-color);
   border-radius: 50%;
   border: 3px solid var(--bg-color);
-  box-shadow: 0 0 0 3px var(--accent-subtle), 0 0 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 0 3px var(--accent-subtle), 0 0 12px rgba(0, 255, 65, 0.3);
   z-index: 2;
   transition: all var(--transition-smooth);
   animation: pulseDot 2s infinite;
@@ -603,7 +605,7 @@ nav ul li a.active {
 
 .timeline-item:hover .timeline-dot {
   transform: scale(1.5);
-  box-shadow: 0 0 0 4px var(--accent-subtle), 0 0 20px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 4px var(--accent-subtle), 0 0 20px rgba(0, 255, 65, 0.5);
 }
 
 .timeline-content {
@@ -614,12 +616,13 @@ nav ul li a.active {
   width: 100%;
   transition: all var(--transition-smooth);
   box-shadow: var(--shadow-sm);
+  transform-style: preserve-3d;
 }
 
 .timeline-content:hover {
-  transform: translateX(6px);
+  transform: perspective(800px) rotateY(5deg) translateX(10px) translateZ(10px);
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.06);
+  box-shadow: -10px 10px 30px rgba(0, 255, 65, 0.2);
   background: var(--card-bg-hover);
 }
 
@@ -772,10 +775,10 @@ nav ul li a.active {
 }
 
 .skill-card:hover {
-  transform: translateY(-6px) scale(1.03);
+  transform: perspective(800px) rotateX(15deg) rotateY(-15deg) scale(1.05) translateZ(20px);
   background: var(--card-bg-hover);
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-md), 0 0 25px rgba(99, 102, 241, 0.1);
+  box-shadow: -15px 15px 40px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
 }
 
 .skill-icon {
@@ -822,6 +825,19 @@ nav ul li a.active {
   gap: 1.5rem;
 }
 
+.portfolio-grid.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.portfolio-grid.carousel .image-container {
+  flex: 0 0 350px;
+  scroll-snap-align: start;
+}
+
 .image-container {
   position: relative;
   border-radius: var(--radius-md);
@@ -835,8 +851,9 @@ nav ul li a.active {
 
 .image-container:hover {
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.1);
-  transform: translateY(-4px);
+  box-shadow: 15px 15px 40px rgba(0, 255, 65, 0.4), -15px -15px 40px rgba(255, 0, 255, 0.2);
+  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) scale(1.02) translateZ(30px);
+  z-index: 10;
 }
 
 .image-container img {
