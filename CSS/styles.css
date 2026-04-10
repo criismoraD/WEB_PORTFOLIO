@@ -212,41 +212,6 @@ header.scrolled .logo-text {
   text-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* --- Language Selector --- */
-.lang-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
-  margin-right: 1.5rem;
-}
-
-.lang-btn {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-family: var(--font-main);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.2rem;
-  transition: all var(--transition-fast);
-}
-
-.lang-btn:hover {
-  color: var(--accent-light);
-}
-
-.lang-btn.active {
-  color: var(--accent-color);
-  text-shadow: 0 0 8px var(--accent-glow);
-}
-
-.lang-divider {
-  color: var(--border-color);
-  font-size: 0.9rem;
-}
-
 /* --- Navigation --- */
 nav ul {
   display: flex;
