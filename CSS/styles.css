@@ -36,6 +36,18 @@
   --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* --- Global Text Selection --- */
+::selection {
+  background: var(--accent-light) !important;
+  color: #101014 !important;
+  -webkit-text-fill-color: #101014 !important;
+}
+
+::-moz-selection {
+  background: var(--accent-light) !important;
+  color: #101014 !important;
+}
+
 /* --- Scrollbar Customization --- */
 ::-webkit-scrollbar {
   width: 12px;
@@ -165,7 +177,7 @@ header {
   background: rgba(10, 10, 11, 0.75);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  padding: 0 3rem;
+  padding: 0 2rem;
   height: 72px;
   position: sticky;
   top: 0;
@@ -173,8 +185,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem; /* Evita físicamente la colisión */
   border-bottom: 1px solid var(--border-color);
   transition: all var(--transition-fast);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logo-link {
@@ -182,9 +197,10 @@ header {
 }
 
 nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  /* En lugar de posición absoluta que choca, usamos flex para centrado dinámico */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 header.scrolled {
@@ -210,6 +226,41 @@ header.scrolled .logo-text {
   transform: scale(1.06);
   color: var(--accent-color);
   text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* --- Language Selector --- */
+.lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: var(--accent-light);
+}
+
+.lang-btn.active {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.lang-divider {
+  color: var(--border-color);
+  font-size: 0.9rem;
 }
 
 /* --- Navigation --- */
@@ -279,7 +330,7 @@ nav ul li a.active {
    MAIN CONTENT
    ============================================================ */
 .main-content {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 4rem 2rem 6rem;
 }
@@ -503,6 +554,32 @@ nav ul li a.active {
 }
 
 /* ============================================================
+   LANG SELECTOR FLOATING (Hero top)
+   ============================================================ */
+.lang-selector-floating {
+  position: absolute; /* En lugar de fixed, así hace scroll */
+  top: 90px;
+  right: 2rem;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(10, 10, 11, 0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: 1px solid rgba(88, 230, 88, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.lang-selector-floating:hover {
+  border-color: rgba(88, 230, 88, 0.5);
+  box-shadow: 0 4px 20px rgba(88, 230, 88, 0.15);
+}
+
+/* ============================================================
    TABS & TRAYECTORIA
    ============================================================ */
 .tabs-container {
@@ -688,7 +765,7 @@ nav ul li a.active {
 .skill-badge {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  color: #fff;
   padding: 0.6rem 1.2rem;
   border-radius: 50px;
   font-size: 0.95rem;
@@ -708,16 +785,40 @@ nav ul li a.active {
 .skill-badge:hover {
   background: var(--accent-color);
   border-color: var(--accent-light);
-  color: white;
+  color: #101014;
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 15px rgba(166, 255, 0, 0.3);
+}
+
+.skill-badge:hover svg {
+  color: #101014;
+}
+
+.skill-badge::selection,
+.skill-badge *::selection {
+  background: var(--accent-light) !important;
+  color: #101014 !important;
+  -webkit-text-fill-color: #101014 !important;
 }
 
 /* ============================================================
    SOFTWARE & TECHNOLOGIES — CATEGORY SECTIONS
    ============================================================ */
+.tech-categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tech-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
 .tech-category {
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
 }
 
 .tech-category:last-child {
@@ -731,8 +832,8 @@ nav ul li a.active {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
@@ -747,19 +848,19 @@ nav ul li a.active {
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .skill-card {
   background: var(--card-bg);
   backdrop-filter: blur(10px);
-  padding: 1.25rem 1rem;
+  padding: 0.85rem 0.5rem;
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-align: center;
   border: 1px solid var(--border-color);
   transition: all var(--transition-bounce);
@@ -776,6 +877,34 @@ nav ul li a.active {
     rgba(255, 255, 255, 0.08) 50%,
     rgba(255, 255, 255, 0) 100%
   );
+}
+
+/* ============================================================
+   VOXEL SPAWN EFFECT
+   ============================================================ */
+.voxel-particle {
+  position: absolute;
+  background-color: var(--accent-light);
+  box-shadow: 0 0 10px var(--accent-color);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  animation: voxelSpawn 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes voxelSpawn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0) scale(0) rotate(0deg);
+  }
+  30% {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0) scale(1) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--vx), var(--vy), 0) scale(0.1) rotate(90deg);
+  }
 }
 
 .skill-card::before {
@@ -839,13 +968,16 @@ nav ul li a.active {
 /* ============================================================
    PORTFOLIO PAGE — IMAGE GRID & CAROUSEL
    ============================================================ */
-.portfolio-carousel-wrapper {
+.portfolio-wrapper {
   width: 100%;
   overflow: hidden;
   position: relative;
-  /* subtle mask to fade out edges */
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  /* side mask to fade out edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .portfolio-grid {
@@ -870,7 +1002,7 @@ nav ul li a.active {
 }
 
 .portfolio-grid.carousel .image-container {
-  flex: 0 0 400px;
+  flex: 0 0 320px;
   cursor: grab;
 }
 
@@ -884,7 +1016,7 @@ nav ul li a.active {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   cursor: pointer;
-  aspect-ratio: 16/10;
+  aspect-ratio: 1/1;
   border: 1px solid var(--border-color);
   transition: all var(--transition-smooth);
 }
@@ -1185,8 +1317,8 @@ footer .footer-links a:hover {
    ============================================================ */
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 85px; /* Más arriba para que el nav del móvil no lo tape */
+  right: 20px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -1199,17 +1331,15 @@ footer .footer-links a:hover {
   justify-content: center;
   font-size: 1.2rem;
   box-shadow: var(--shadow-md), var(--shadow-glow);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
+  opacity: 1; /* SIEMPRE VISIBLE como solicitó el usuario */
+  visibility: visible;
+  transform: translateY(0);
   transition: all var(--transition-smooth);
   z-index: 900;
 }
 
 .back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  /* Ya no necesita ser modificado porque siempre está visible */
 }
 
 .back-to-top:hover {
@@ -1219,8 +1349,18 @@ footer .footer-links a:hover {
 }
 
 /* ============================================================
-   TYPING CURSOR
+   TYPING CURSOR & TEXT (Matched to Main Title)
    ============================================================ */
+.typing-container {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: -1.75rem 0 1.5rem 0; /* Margen negativo para acercarlo al título principal */
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+  color: var(--accent-light);
+}
+
 .typing-cursor {
   font-weight: 300;
   animation: blink 0.8s step-end infinite;
@@ -1377,22 +1517,13 @@ footer .footer-links a:hover {
 }
 
 /* Double Carousel Styles */
-.portfolio-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 .portfolio-grid.carousel {
   padding: 0.5rem 0 1rem 0; /* Reduced padding between the two rows */
 }
 
-/* Ensure the right-scrolling carousel starts from the end so it doesn't snap initially */
+/* Ensure the right-scrolling carousel logic handles clones */
 .portfolio-grid.carousel-right {
-  direction: rtl; /* simple trick to make children flow right-to-left initially for clone layout */
-}
-.portfolio-grid.carousel-right > * {
-  direction: ltr; /* reset content inside */
+  /* direction: rtl removed to avoid conflict with JS scrollLeft logic */
 }
 
 /* Hide icons on desktop, show only text */
@@ -1410,6 +1541,28 @@ nav ul li a .nav-icon {
   header {
     height: 60px;
     justify-content: space-between;
+    padding: 0 1rem; /* Margen para pantallas pequeñas */
+  }
+
+  /* Selector de idiomas flotante (ajustes para móvil) */
+  .lang-selector-floating {
+    top: 75px; /* Un poco más arriba en móvil */
+    right: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .logo-link {
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+
+  /* Evitar saltos de línea y descuadre en el Hero durante la escritura */
+  .typing-container {
+    font-size: 1.5rem !important; /* Tamaño más pequeño en móvil */
+    min-height: 2.5rem; /* Reserva de espacio vertical estricta */
+    margin-top: -0.5rem;
+    white-space: nowrap; /* Obliga a mantener todo en 1 sola línea */
   }
 
   /* Bottom Navigation Bar for Mobile */
@@ -1475,7 +1628,7 @@ nav ul li a .nav-icon {
 
   /* Add padding to the bottom of the main content so the bottom nav doesn't overlap */
   .main-content {
-    padding-bottom: 80px;
+    padding-bottom: 80px; 
   }
 }
 
@@ -1492,4 +1645,9 @@ body::before {
   background: radial-gradient(circle at 50% 30%, rgba(0, 255, 65, 0.12) 0%, rgba(10, 10, 11, 0.7) 60%, rgba(5, 5, 6, 0.95) 100%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Aplicar suavidad a la transición de texto */
+[data-i18n] {
+  transition: opacity 0.3s ease;
 }

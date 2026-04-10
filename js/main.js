@@ -55,7 +55,7 @@
   }
 
   /* ----------------------------------------------------------
-     4. SCROLL REVEAL — Intersection Observer
+     4. SCROLL REVEAL VOXELS & Intersection Observer
   ---------------------------------------------------------- */
   var revealElements = document.querySelectorAll('.reveal');
 
@@ -180,7 +180,7 @@
   /* ----------------------------------------------------------
      8. TABS LOGIC
   ---------------------------------------------------------- */
-  window.openTab = function (tabName) {
+  window.openTab = function (event, tabName) {
     var i, tabContent, tabBtns;
     tabContent = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabContent.length; i++) {
@@ -216,16 +216,15 @@
      9. TYPING ANIMATION
   ---------------------------------------------------------- */
   var typingEl = document.getElementById('typingText');
+  var typingRoles = ["Technical Artist", "Software Developer"]; // Mantener siempre en inglés según preferencia del usuario
+  var roleIndex = 0;
+  var charIndex = 0;
+  var isDeleting = false;
+  var typingSpeed = 100;
 
   if (typingEl) {
-    var roles = ['Technical Artist', 'Software Developer'];
-    var roleIndex = 0;
-    var charIndex = 0;
-    var isDeleting = false;
-    var typingSpeed = 100;
-
     function type() {
-      var current = roles[roleIndex];
+      var current = typingRoles[roleIndex];
 
       if (isDeleting) {
         typingEl.textContent = current.substring(0, charIndex - 1);
@@ -242,7 +241,7 @@
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
+        roleIndex = (roleIndex + 1) % typingRoles.length;
         delay = 400;
       } else if (isDeleting) {
         delay = 50;
@@ -270,7 +269,7 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-
+    
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -290,11 +289,11 @@
       var currentScroll = window.scrollY;
       var scrollDiff = currentScroll - scrollY;
       scrollY = currentScroll;
-
+      
       // Move particles with scroll
       for(var i = 0; i < particles.length; i++) {
         particles[i].y -= scrollDiff * 0.3; // Parallax effect
-
+        
         // Wrap around vertically
         if(particles[i].y > canvas.height) {
           particles[i].y = 0;
@@ -334,14 +333,14 @@
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-
+        
         if (distance < mouse.radius) {
           let forceDirectionX = dx / distance;
           let forceDirectionY = dy / distance;
           let force = (mouse.radius - distance) / mouse.radius;
           let directionX = forceDirectionX * force * 5;
           let directionY = forceDirectionY * force * 5;
-
+          
           this.x -= directionX;
           this.y -= directionY;
         } else {
@@ -397,3 +396,247 @@
     initParticles();
     animateParticles();
   }
+
+
+  /* ----------------------------------------------------------
+     11. INFINITE CAROUSEL LOGIC (DOUBLE DIRECTION)
+  ---------------------------------------------------------- */
+  const carousels = document.querySelectorAll('.portfolio-grid.carousel');
+  carousels.forEach(carousel => {
+    // Clone children to create infinite loop effect
+    const children = Array.from(carousel.children);
+    children.forEach(child => {
+      const clone = child.cloneNode(true);
+      carousel.appendChild(clone);
+    });
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    // Determine direction (1 for left, -1 for right)
+    const isRightScrolling = carousel.classList.contains('carousel-right');
+    const baseSpeed = isRightScrolling ? -0.5 : 0.5;
+    let autoScrollSpeed = baseSpeed; 
+    let currentScrollPos = 0; // Use float variable to avoid integer truncation lag
+    
+    // Improved initialization: no delay, waits for layout ready
+    function setInitialPosition() {
+        if (carousel.scrollWidth > 0) {
+            if (isRightScrolling) {
+                currentScrollPos = carousel.scrollWidth / 2;
+                carousel.scrollLeft = currentScrollPos;
+            } else {
+                currentScrollPos = 0;
+                carousel.scrollLeft = 0;
+            }
+        } else {
+            requestAnimationFrame(setInitialPosition);
+        }
+    }
+    setInitialPosition();
+
+    // Pause on hover functionality
+    carousel.addEventListener('mouseenter', () => {
+      if(!isDown) autoScrollSpeed = 0;
+    });
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('active');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      currentScrollPos = scrollLeft; // sync on click
+      autoScrollSpeed = 0; 
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = baseSpeed; 
+    });
+    
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = baseSpeed;
+    });
+    
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2; 
+      currentScrollPos = scrollLeft - walk;
+      carousel.scrollLeft = currentScrollPos;
+    });
+
+    // Auto scrolling and infinite loop reset
+    function autoScroll() {
+      if (!isDown && carousel.scrollWidth > 0 && autoScrollSpeed !== 0) {
+        currentScrollPos += autoScrollSpeed;
+        
+        // Infinite loop logic
+        if (isRightScrolling) {
+          if (currentScrollPos <= 0) {
+            currentScrollPos = carousel.scrollWidth / 2;
+          }
+        } else {
+          if (currentScrollPos >= (carousel.scrollWidth / 2)) {
+            currentScrollPos = 0;
+          }
+        }
+        carousel.scrollLeft = currentScrollPos;
+      }
+      requestAnimationFrame(autoScroll);
+    }
+    
+    requestAnimationFrame(autoScroll);
+  });
+
+
+  /* ----------------------------------------------------------
+     12. ACCESSIBILITY: KEYBOARD NAVIGATION FOR CAROUSEL
+  ---------------------------------------------------------- */
+  const imageContainers = document.querySelectorAll('.image-container[role="button"]');
+  imageContainers.forEach(container => {
+    container.addEventListener('keydown', (e) => {
+      // Allow opening modal with Enter or Space
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        container.click();
+      }
+    });
+  });
+
+  /* ----------------------------------------------------------
+     13. LANGUAGE TRANSLATION ENGINE (UNIVERSAL)
+  ---------------------------------------------------------- */
+  const translations = {
+    es: {
+      navHome: "Inicio",
+      navPortfolio: "Portafolio",
+      navContact: "Contacto",
+      subtitle: "Technical Artist",
+      aboutText: "Technical Artist con experiencia creando recursos 3D, entornos para Arquitectura, publicidad y diversas industrias. Actualmente ampliando mi perfil en desarrollo de software, combinando arte y código para ofrecer soluciones completas.",
+      tabExperience: "Experiencia",
+      tabEducation: "Educación",
+      expEmmanuel: "Renders variados estilo low-poly para artista panameño.",
+      expOrthodontic: "Modelado y Renderizado de piezas dentales.",
+      eduSenati: "Desarrollo de Software",
+      eduIsil: "Animación Digital y Diseño 3D",
+      titleProjects: "Proyectos Destacados",
+      titleTrayectoria: "Trayectoria",
+      skillsTitle: "Habilidades",
+      skillModeling: "Modelado High & Low Poly",
+      skillOptimization: "Optimización de Rendimiento en Tiempo Real",
+      skillProcedural: "Creación de Contenido Procedural",
+      skillMaterials: "Materiales y Shaders",
+      skillPBR: "Texturizado PBR",
+      skillLighting: "Iluminación de Escenas",
+      skillVFX: "Simulaciones de Fluidos y VFX",
+      skillPost: "Postproducción",
+      skillCAD: "Modelado CAD",
+      skillScripting: "Scripting y Programación",
+      softwareTitle: "Software & Tecnologías",
+      catDev: "Lenguajes de Programación",
+      catGames: "Motores de Videojuegos",
+      cat3D: "Modelado y Escultura 3D",
+      catTexturing: "Texturizado",
+      catRender: "Motores de Render",
+      catVFX: "VFX y Simulación",
+      catPost: "Postproducción y Diseño",
+      contactTitle: "Contacto",
+      contactIntro: "¿Tienes un proyecto en mente? Escríbeme y hablemos.",
+      labelName: "Nombre",
+      placeholderName: "Tu nombre",
+      labelEmail: "Correo Electrónico",
+      placeholderEmail: "tu@email.com",
+      labelMessage: "Mensaje",
+      placeholderMessage: "Cuéntame sobre tu proyecto...",
+      submitBtn: "Enviar mensaje",
+      footerRights: "© 2026 Christian Mora Damian. Todos los derechos reservados.",
+      typingRoles: ["Technical Artist", "Software Developer"]
+    },
+    en: {
+      navHome: "Home",
+      navPortfolio: "Portfolio",
+      navContact: "Contact",
+      subtitle: "Technical Artist",
+      aboutText: "Technical Artist with experience creating 3D assets and environments for Architecture, advertising, and various industries. Currently expanding my profile in software development, combining art and code to deliver complete solutions.",
+      tabExperience: "Experience",
+      tabEducation: "Education",
+      expEmmanuel: "Various low-poly style renders for Panamanian artist.",
+      expOrthodontic: "Modeling and Rendering of dental pieces.",
+      eduSenati: "Software Development",
+      eduIsil: "Digital Animation and 3D Design",
+      titleProjects: "Featured Projects",
+      titleTrayectoria: "Journey",
+      skillsTitle: "Technical Skills",
+      skillModeling: "High & Low Poly Modeling",
+      skillOptimization: "Realtime Performance Optimization",
+      skillProcedural: "Procedural Content Creation",
+      skillMaterials: "Materials & Shaders",
+      skillPBR: "PBR Texturing",
+      skillLighting: "Scene Lighting",
+      skillVFX: "Fluid Simulations & VFX",
+      skillPost: "Post-production",
+      skillCAD: "CAD Modeling",
+      skillScripting: "Scripting & Programming",
+      softwareTitle: "Software & Technology",
+      catDev: "Development Languages",
+      catGames: "Game Engines",
+      cat3D: "3D Modeling & Sculpting",
+      catTexturing: "Texturing",
+      catRender: "Render Engines",
+      catVFX: "VFX & Simulation",
+      catPost: "Post-production & Design",
+      contactTitle: "Contact Me",
+      contactIntro: "Have a project in mind? Write to me and let's talk.",
+      labelName: "Name",
+      placeholderName: "Your name",
+      labelEmail: "Email Address",
+      placeholderEmail: "your@email.com",
+      labelMessage: "Message",
+      placeholderMessage: "Tell me about your project...",
+      submitBtn: "Send Message",
+      footerRights: "© 2026 Christian Mora Damian. All rights reserved.",
+      typingRoles: ["Technical Artist", "Software Developer"]
+    }
+  };
+
+  const langBtns = document.querySelectorAll('.lang-btn');
+  
+  function applyTranslations(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    // Translate all elements with data-i18n attribute
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) {
+        // Special handle for placeholders
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.setAttribute('placeholder', t[key]);
+        } else {
+          el.textContent = t[key];
+        }
+      }
+    });
+
+    // Sync typing roles
+    if (t.typingRoles) {
+      typingRoles = t.typingRoles;
+    }
+  }
+
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const lang = btn.getAttribute('data-lang');
+      applyTranslations(lang);
+    });
+  });
