@@ -255,3 +255,207 @@
   }
 
 })();
+
+  /* ----------------------------------------------------------
+     10. INTERACTIVE PARTICLE BACKGROUND
+  ---------------------------------------------------------- */
+  var canvas = document.getElementById('particleCanvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var particleCount = 80;
+    var mouse = { x: null, y: null, radius: 100 };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    window.addEventListener('mousemove', function(e) {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+
+    // Handle scroll offset
+    var scrollY = window.scrollY;
+    window.addEventListener('scroll', function() {
+      var currentScroll = window.scrollY;
+      var scrollDiff = currentScroll - scrollY;
+      scrollY = currentScroll;
+
+      // Move particles with scroll
+      for(var i = 0; i < particles.length; i++) {
+        particles[i].y -= scrollDiff * 0.3; // Parallax effect
+
+        // Wrap around vertically
+        if(particles[i].y > canvas.height) {
+          particles[i].y = 0;
+        } else if (particles[i].y < 0) {
+          particles[i].y = canvas.height;
+        }
+      }
+    });
+
+    class Particle {
+      constructor(x, y, dx, dy, size) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.size = size;
+        this.baseX = this.x;
+        this.baseY = this.y;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.4)';
+        ctx.fill();
+      }
+
+      update() {
+        if (this.x > canvas.width || this.x < 0) {
+          this.dx = -this.dx;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+          this.dy = -this.dy;
+        }
+
+        // Mouse interaction
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          let forceDirectionX = dx / distance;
+          let forceDirectionY = dy / distance;
+          let force = (mouse.radius - distance) / mouse.radius;
+          let directionX = forceDirectionX * force * 5;
+          let directionY = forceDirectionY * force * 5;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          // Return to normal speed/direction slowly if displaced by mouse
+          this.x += this.dx;
+          this.y += this.dy;
+        }
+
+        this.draw();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      let numParticles = (canvas.width * canvas.height) / 12000;
+      for (let i = 0; i < numParticles; i++) {
+        let size = (Math.random() * 2) + 0.5;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        let dx = (Math.random() - 0.5) * 0.8;
+        let dy = (Math.random() - 0.5) * 0.8;
+        particles.push(new Particle(x, y, dx, dy, size));
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+            + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+          if (distance < (canvas.width / 10) * (canvas.height / 10)) {
+            let opacityValue = 1 - (distance / 20000);
+            ctx.strokeStyle = 'rgba(0, 255, 65,' + opacityValue * 0.3 + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+      }
+      connectParticles();
+    }
+
+    initParticles();
+    animateParticles();
+  }
+
+
+  /* ----------------------------------------------------------
+     11. INFINITE CAROUSEL LOGIC
+  ---------------------------------------------------------- */
+  const carousel = document.querySelector('.portfolio-grid.carousel');
+  if (carousel) {
+    // Clone children to create infinite loop effect
+    const children = Array.from(carousel.children);
+    children.forEach(child => {
+      const clone = child.cloneNode(true);
+      carousel.appendChild(clone);
+    });
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let autoScrollSpeed = 1; // pixels per frame
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('active');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      autoScrollSpeed = 0; // stop auto scroll when dragging
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = 1;
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+      autoScrollSpeed = 1;
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll fast
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Auto scrolling and infinite loop reset
+    function autoScroll() {
+      if (!isDown) {
+        carousel.scrollLeft += autoScrollSpeed;
+      }
+
+      // If scrolled past the first set of items, reset to beginning seamlessly
+      if (carousel.scrollLeft >= (carousel.scrollWidth / 2)) {
+        carousel.scrollLeft = 0;
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    requestAnimationFrame(autoScroll);
+  }
