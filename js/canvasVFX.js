@@ -30,7 +30,7 @@
         gato.animate([{opacity: 0, transform: 'translateY(50px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: 500, fill: 'forwards'});
         setTimeout(() => {
             gato.animate([{opacity: 1}, {opacity: 0}], {duration: 1500, fill: 'forwards'}).onfinish = () => gato.style.display = 'none';
-        }, 10000); 
+        }, 3000); 
     }
 
     function spawnParticle(x, y, isClick, overdrive) {

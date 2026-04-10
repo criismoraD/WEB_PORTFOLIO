@@ -54,8 +54,10 @@ Este archivo registra las modificaciones y la estructura progresiva del portafol
     - **Iconificación**: Sustitución de etiquetas de texto por iconos SVG en el menú de navegación para ahorrar espacio y mejorar la estética.
     - **Switch de Idioma Físico**: Implementación de un selector tipo "switch" con textos ESP/ENG y una transición animada mediante pseudoelementos (`::before`) impulsada por el atributo `lang` del HTML.
     - **Limpieza**: Ocultación del nombre "Christian Mora" en el header móvil para evitar saturación visual.
+- **Micro-ajustes VFX**:
+    - **Gato Rayo**: Se redujo el tiempo de permanencia en pantalla de 10 a **3 segundos** para una interacción más ágil.
 - **Cache-Busting**: Implementación de parámetros de versión (`?v=3.7`) en las llamadas a scripts para forzar la actualización en GitHub Pages.
-- **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/i18n.js`.
+- **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/i18n.js`, `js/canvasVFX.js`.
 
 ### [10-04-2026] Refinamiento de Perfil y Navegación V3.7
 - **Actualización de Bio**: Reajuste de enfoque profesional de "Technical Artist / Arte Hiperrealista" a **"Programador y Diseñador 3D"** en todas las meta-descripciones y etiquetas OG.
