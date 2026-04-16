@@ -10,7 +10,7 @@
      1. PAGE LOADER
   ---------------------------------------------------------- */
   window.addEventListener('load', function () {
-    var loader = document.getElementById('pageLoader');
+    const loader = document.getElementById('pageLoader');
     if (loader) {
       loader.classList.add('hidden');
     }
@@ -19,7 +19,7 @@
   /* ----------------------------------------------------------
      2. HEADER SCROLL EFFECT
   ---------------------------------------------------------- */
-  var header = document.getElementById('siteHeader');
+  const header = document.getElementById('siteHeader');
 
   function onScroll() {
     if (!header) return;
@@ -36,8 +36,8 @@
   /* ----------------------------------------------------------
      3. MOBILE MENU TOGGLE
   ---------------------------------------------------------- */
-  var menuToggle = document.getElementById('menuToggle');
-  var mainNav = document.getElementById('mainNav');
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
 
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', function () {
@@ -57,10 +57,10 @@
   /* ----------------------------------------------------------
      4. SCROLL REVEAL VOXELS & Intersection Observer
   ---------------------------------------------------------- */
-  var revealElements = document.querySelectorAll('.reveal');
+  const revealElements = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window && revealElements.length) {
-    var revealObserver = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -86,11 +86,11 @@
      5. STAGGERED CARD ANIMATIONS
   ---------------------------------------------------------- */
   function staggerCards() {
-    var grids = document.querySelectorAll('.skills-grid, .links-grid, .portfolio-grid');
+    const grids = document.querySelectorAll('.skills-grid, .links-grid, .portfolio-grid');
 
     grids.forEach(function (grid) {
-      var cards = grid.children;
-      var gridObserver = new IntersectionObserver(
+      const cards = grid.children;
+      const gridObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -125,8 +125,8 @@
      6. IMAGE MODAL (portfolio page)
   ---------------------------------------------------------- */
   window.openModal = function (imgSrc) {
-    var modal = document.getElementById('myModal');
-    var modalImg = document.getElementById('img01');
+    const modal = document.getElementById('myModal');
+    const modalImg = document.getElementById('img01');
     if (!modal || !modalImg) return;
 
     modal.style.display = 'block';
@@ -146,7 +146,7 @@
   // Close modal on Escape
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-      var modal = document.getElementById('myModal');
+      const modal = document.getElementById('myModal');
       if (modal && modal.style.display === 'block') {
         modal.style.display = 'none';
         document.body.style.overflow = '';
@@ -157,7 +157,7 @@
   /* ----------------------------------------------------------
      7. BACK TO TOP BUTTON
   ---------------------------------------------------------- */
-  var backToTop = document.getElementById('backToTop');
+  const backToTop = document.getElementById('backToTop');
 
   function toggleBackToTop() {
     if (!backToTop) return;
@@ -181,12 +181,12 @@
      8. TABS LOGIC
   ---------------------------------------------------------- */
   window.openTab = function (event, tabName) {
-    var i, tabContent, tabBtns;
-    tabContent = document.getElementsByClassName("tab-content");
+    let i;
+    const tabContent = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabContent.length; i++) {
       tabContent[i].classList.remove("active");
     }
-    tabBtns = document.getElementsByClassName("tab-btn");
+    const tabBtns = document.getElementsByClassName("tab-btn");
     for (i = 0; i < tabBtns.length; i++) {
       tabBtns[i].classList.remove("active");
     }
@@ -197,13 +197,13 @@
   /* ----------------------------------------------------------
      9. TILT EFFECT ON PROFILE IMAGE
   ---------------------------------------------------------- */
-  var profileImg = document.querySelector('.profile-img');
+  const profileImg = document.querySelector('.profile-img');
 
   if (profileImg) {
     profileImg.addEventListener('mousemove', function (e) {
-      var rect = profileImg.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width - 0.5;
-      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      const rect = profileImg.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       profileImg.style.transform = 'scale(1.04) rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
     });
 
@@ -215,16 +215,16 @@
   /* ----------------------------------------------------------
      9. TYPING ANIMATION
   ---------------------------------------------------------- */
-  var typingEl = document.getElementById('typingText');
-  var typingRoles = ["Technical Artist", "Software Developer"]; // Mantener siempre en inglés según preferencia del usuario
-  var roleIndex = 0;
-  var charIndex = 0;
-  var isDeleting = false;
-  var typingSpeed = 100;
+  const typingEl = document.getElementById('typingText');
+  let typingRoles = ["Technical Artist", "Software Developer"]; // Mantener siempre en inglés según preferencia del usuario
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
 
   if (typingEl) {
     function type() {
-      var current = typingRoles[roleIndex];
+      const current = typingRoles[roleIndex];
 
       if (isDeleting) {
         typingEl.textContent = current.substring(0, charIndex - 1);
@@ -234,7 +234,7 @@
         charIndex++;
       }
 
-      var delay = typingSpeed;
+      let delay = typingSpeed;
 
       if (!isDeleting && charIndex === current.length) {
         delay = 2000; // pause at full word
@@ -258,12 +258,12 @@
   /* ----------------------------------------------------------
      10. INTERACTIVE PARTICLE BACKGROUND
   ---------------------------------------------------------- */
-  var canvas = document.getElementById('particleCanvas');
+  const canvas = document.getElementById('particleCanvas');
   if (canvas) {
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-    var particleCount = 80;
-    var mouse = { x: null, y: null, radius: 100 };
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 80;
+    const mouse = { x: null, y: null, radius: 100 };
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -284,14 +284,14 @@
     });
 
     // Handle scroll offset
-    var scrollY = window.scrollY;
+    let scrollY = window.scrollY;
     window.addEventListener('scroll', function() {
-      var currentScroll = window.scrollY;
-      var scrollDiff = currentScroll - scrollY;
+      const currentScroll = window.scrollY;
+      const scrollDiff = currentScroll - scrollY;
       scrollY = currentScroll;
       
       // Move particles with scroll
-      for(var i = 0; i < particles.length; i++) {
+      for(let i = 0; i < particles.length; i++) {
         particles[i].y -= scrollDiff * 0.3; // Parallax effect
         
         // Wrap around vertically
