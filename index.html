@@ -18,13 +18,13 @@
   <meta property="og:url" content="https://criismorad.github.io/WEB_PORTFOLIO/" />
   <meta property="og:title" content="Christian Mora | Technical Artist Portfolio" />
   <meta property="og:description" content="Explora mi galería 3D, proyectos de software interactivo y desarrollo técnico de alto nivel. Experiencia fusionando programación y diseño 3D." />
-  <meta property="og:image" content="https://criismorad.github.io/WEB_PORTFOLIO/img/profile.jpeg" />
+  <meta property="og:image" content="https://criismorad.github.io/WEB_PORTFOLIO/img/profile.webp" />
   
   <!-- ==================== TWITTER CARDS ==================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Christian Mora | Technical Artist & 3D Generalist" />
   <meta name="twitter:description" content="VFX, renderizado, y software interactivo fusionado con arte de calidad suprema." />
-  <meta name="twitter:image" content="https://criismorad.github.io/WEB_PORTFOLIO/img/profile.jpeg" />
+  <meta name="twitter:image" content="https://criismorad.github.io/WEB_PORTFOLIO/img/profile.webp" />
 
   <!-- ==================== JSON-LD SCHEMA ==================== -->
   <script type="application/ld+json">
@@ -33,7 +33,7 @@
     "@type": "Person",
     "name": "Christian Mora",
     "url": "https://criismorad.github.io/WEB_PORTFOLIO/",
-    "image": "https://criismorad.github.io/WEB_PORTFOLIO/img/profile.jpeg",
+    "image": "https://criismorad.github.io/WEB_PORTFOLIO/img/profile.webp",
     "jobTitle": "Technical Artist & 3D Generalist",
     "description": "Technical Artist especializado en modelado 3D interactivo, texturizado y optimización de simulaciones para web y videojuegos.",
     "sameAs": [
@@ -44,8 +44,14 @@
   }
   </script>
 
+  <!-- ==================== PERFORMANCE PRELOADS ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preload" as="image" href="img/profile.webp" fetchpriority="high" />
+
   <link rel="stylesheet" href="CSS/styles.css" />
-  <link rel="icon" href="img/Rata_pela.jpeg" type="image/jpeg" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 
@@ -62,7 +68,6 @@
   <!-- Header -->
   <header id="siteHeader">
     <a href="index.html" class="logo-link">
-      <span class="logo-text">Christian Mora</span>
     </a>
 
     <nav id="mainNav">
@@ -129,79 +134,149 @@
   <!-- Main Content -->
   <main class="main-content">
 
-    <!-- About / Hero Section -->
-    <section id="inicio" class="sobremi reveal">
-      <div class="img-Titulo">
-        <img src="img/profile.jpeg" alt="Christian Mora — Foto de perfil" class="profile-img" />
-      </div>
-      <div class="descripcion">
+    <!-- About / Hero Section (Modern Redesign) -->
+    <section id="inicio" class="hero-modern reveal">
+      <!-- Left Column: Text & CTA -->
+      <div class="hero-content">
         <p class="subtitle-label" data-i18n="subtitle">Technical Artist</p>
-        <h1 class="texto-titulo">Christian Mora</h1>
+        <h1 class="hero-title">
+          Christian <span class="text-gradient">Mora</span>
+        </h1>
         <p class="typing-container">
           <span id="typingText"></span><span class="typing-cursor">|</span>
         </p>
-        <p class="parrafo" data-i18n="aboutText">
+        <p class="hero-description" data-i18n="aboutText">
           Technical Artist con experiencia creando recursos 3D, entornos para Arquitectura, publicidad y diversas
-          industrias. Actualmente ampliando mi perfil en desarrollo de software, combinando arte y código para ofrecer
-          soluciones completas.
+          industrias. Combino arte y código para desarrollar soluciones visuales optimizadas y experiencias interactivas.
         </p>
+        <div class="hero-actions">
+          <a href="CV_Christian_Mora.pdf" target="_blank" class="btn btn-primary">
+            <span data-i18n="heroBtnCV">Descargar CV ↓</span>
+          </a>
+        </div>
+        <div class="hero-contact-chips">
+          <a href="mailto:criis.sb.9@gmail.com" class="chip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            criis.sb.9@gmail.com
+          </a>
+          <span class="chip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Perú
+          </span>
+        </div>
+      </div>
+      
+      <!-- Right Column: Avatar -->
+      <div class="hero-visual">
+        <div class="avatar-container">
+          <div class="glow-ring"></div>
+          <img src="img/profile.webp" alt="Christian Mora" class="profile-avatar" fetchpriority="high" decoding="async" />
+        </div>
       </div>
     </section>
 
-    <!-- Links -->
-    <section class="bloques_main reveal">
+
+    <!-- Connect / Links -->
+    <section class="connect-section reveal">
+      <div class="section-header-inline">
+        <h3 data-i18n="connectTitle">Conecta conmigo</h3>
+        <div class="line-divider"></div>
+      </div>
+      <div class="connect-grid">
+        <a href="https://www.artstation.com/criismora" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <img src="img/ArtStation.webp" alt="Artstation" class="connect-icon" />
+          <div class="connect-info">
+            <span class="connect-name">Artstation</span>
+            <span class="connect-desc" data-i18n="connectArtstation">Ver mi trabajo</span>
+          </div>
+        </a>
+        <a href="https://www.freelancer.com/u/Criismora" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <img src="img/fr.webp" alt="Freelancer" class="connect-icon" />
+          <div class="connect-info">
+            <span class="connect-name">Freelancer</span>
+            <span class="connect-desc" data-i18n="connectFreelancer">Perfil profesional</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/christian-alfredo-mora-damian-658038263/" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <img src="img/linkedin.svg" alt="LinkedIn" class="connect-icon" />
+          <div class="connect-info">
+            <span class="connect-name">LinkedIn</span>
+            <span class="connect-desc" data-i18n="connectLinkedin">Conectemos</span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/rex.3d1/" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <img src="img/IG.webp" alt="Instagram" class="connect-icon" />
+          <div class="connect-info">
+            <span class="connect-name">Instagram</span>
+            <span class="connect-desc">@rex.3d1</span>
+          </div>
+        </a>
+        <a href="https://www.cgtrader.com/designers/criismora" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <img src="img/cgt.webp" alt="CGTrader" class="connect-icon" />
+          <div class="connect-info">
+            <span class="connect-name">CGTrader</span>
+            <span class="connect-desc" data-i18n="connectCgtrader">Modelos 3D</span>
+          </div>
+        </a>
+        <a href="https://github.com/criismoraD" target="_blank" rel="noopener noreferrer" class="connect-card shimmer-effect">
+          <i class="devicon-github-original" style="font-size: 28px; color: var(--text-primary);"></i>
+          <div class="connect-info">
+            <span class="connect-name">GitHub</span>
+            <span class="connect-desc" data-i18n="connectGithub">Repositorios</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Desarrollo & Automatización -->
+    <section id="servicios" class="bloques_main reveal">
       <div class="section-header">
         <div class="section-icon floating">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-link">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
           </svg>
         </div>
-        <h3>Links</h3>
+        <h3 data-i18n="titleServices">Desarrollo & Automatización</h3>
       </div>
-      <div class="links-grid">
-        <a href="https://www.artstation.com/criismora" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/ArtStation.png" alt="Artstation" class="icon" />
-          <span>Artstation</span>
-        </a>
-        <a href="https://www.freelancer.com/u/Criismora" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/fr.webp" alt="Freelancer" class="icon" />
-          <span>Freelancer</span>
-        </a>
-        <a href="https://www.linkedin.com/in/christian-alfredo-mora-damian-658038263/" target="_blank"
-          rel="noopener noreferrer" class="link-card shimmer-effect">
-          <img src="img/linkedin.svg" alt="LinkedIn" class="icon" />
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://www.instagram.com/rex.3d1/" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/IG.webp" alt="Instagram" class="icon" />
-          <span>Instagram</span>
-        </a>
-        <a href="https://www.cgtrader.com/designers/criismora" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/cgt.png" alt="CGTrader" class="icon" />
-          <span>CGTrader</span>
-        </a>
-        <a href="https://sketchfab.com/Criismora" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/skf.png" alt="Sketchfab" class="icon" />
-          <span>Sketchfab</span>
-        </a>
-        <a href="https://github.com/criismoraD" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <i class="devicon-github-original" style="font-size: 30px; color: var(--text-primary);"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="https://www.youtube.com/@criismora" target="_blank" rel="noopener noreferrer"
-          class="link-card shimmer-effect">
-          <img src="img/yt.png" alt="Youtube" class="icon" />
-          <span>Youtube</span>
-        </a>
+      <div class="services-grid">
+        <div class="service-card shimmer-effect">
+          <div class="service-img-container">
+            <img src="img/serv_web.webp" alt="Web & App Development" loading="lazy" />
+          </div>
+          <div class="service-info">
+            <h4 data-i18n="servWebTitle">Web & App Development</h4>
+            <p data-i18n="servWebDesc">Creación de aplicaciones web modernas, PWAs y plataformas interactivas de alto rendimiento.</p>
+          </div>
+        </div>
+        <div class="service-card shimmer-effect">
+          <div class="service-img-container">
+            <img src="img/serv_bots.webp" alt="AI BOTS (WA/TG)" loading="lazy" />
+          </div>
+          <div class="service-info">
+            <h4 data-i18n="servBotsTitle">Bots de IA (WhatsApp/Telegram)</h4>
+            <p data-i18n="servBotsDesc">Automatización de atención al cliente y procesos de negocio mediante bots inteligentes con IA.</p>
+          </div>
+        </div>
+        <div class="service-card shimmer-effect">
+          <div class="service-img-container">
+            <img src="img/serv_desktop.webp" alt="Desktop Apps Business" loading="lazy" />
+          </div>
+          <div class="service-info">
+            <h4 data-i18n="servDesktopTitle">Software de Escritorio</h4>
+            <p data-i18n="servDesktopDesc">Desarrollo de herramientas administrativas y aplicaciones robustas para entornos empresariales.</p>
+          </div>
+        </div>
+        <div class="service-card shimmer-effect">
+          <div class="service-img-container">
+            <img src="img/serv_auto.webp" alt="Automation & Scripting" loading="lazy" />
+          </div>
+          <div class="service-info">
+            <h4 data-i18n="servAutoTitle">Automatización & Scripting</h4>
+            <p data-i18n="servAutoDesc">Optimización de flujos de trabajo repetitivos mediante scripts avanzados en Python y PowerShell.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -549,57 +624,7 @@
       </div>
     </section>
 
-    <!-- Desarrollo & Automatización -->
-    <section id="servicios" class="bloques_main reveal">
-      <div class="section-header">
-        <div class="section-icon floating">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </div>
-        <h3 data-i18n="titleServices">Desarrollo & Automatización</h3>
-      </div>
-      <div class="services-grid">
-        <div class="service-card shimmer-effect">
-          <div class="service-img-container">
-            <img src="img/serv_web.png" alt="Web & App Development" loading="lazy" />
-          </div>
-          <div class="service-info">
-            <h4 data-i18n="servWebTitle">Web & App Development</h4>
-            <p data-i18n="servWebDesc">Creación de aplicaciones web modernas, PWAs y plataformas interactivas de alto rendimiento.</p>
-          </div>
-        </div>
-        <div class="service-card shimmer-effect">
-          <div class="service-img-container">
-            <img src="img/serv_bots.png" alt="AI BOTS (WA/TG)" loading="lazy" />
-          </div>
-          <div class="service-info">
-            <h4 data-i18n="servBotsTitle">Bots de IA (WhatsApp/Telegram)</h4>
-            <p data-i18n="servBotsDesc">Automatización de atención al cliente y procesos de negocio mediante bots inteligentes con IA.</p>
-          </div>
-        </div>
-        <div class="service-card shimmer-effect">
-          <div class="service-img-container">
-            <img src="img/serv_desktop.png" alt="Desktop Apps Business" loading="lazy" />
-          </div>
-          <div class="service-info">
-            <h4 data-i18n="servDesktopTitle">Software de Escritorio</h4>
-            <p data-i18n="servDesktopDesc">Desarrollo de herramientas administrativas y aplicaciones robustas para entornos empresariales.</p>
-          </div>
-        </div>
-        <div class="service-card shimmer-effect">
-          <div class="service-img-container">
-            <img src="img/serv_auto.png" alt="Automation & Scripting" loading="lazy" />
-          </div>
-          <div class="service-info">
-            <h4 data-i18n="servAutoTitle">Automatización & Scripting</h4>
-            <p data-i18n="servAutoDesc">Optimización de flujos de trabajo repetitivos mediante scripts avanzados en Python y PowerShell.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Software & Tecnologías — Organizado por categorías -->
     <section id="software" class="bloques_main reveal">
@@ -616,275 +641,141 @@
         <h3 data-i18n="softwareTitle">Software &amp; Tecnologías</h3>
       </div>
 
-      <!-- Contenedor Maestro -->
-      <div class="tech-categories-container">
+      <!-- Tabs: Perfil Técnico / Herramientas 3D -->
+      <div class="tabs-container">
+        <div class="tabs-header">
+          <button class="tab-btn active" onclick="openTab(event, 'techProfile')" data-i18n="tabTechProfile">Perfil Técnico</button>
+          <button class="tab-btn" onclick="openTab(event, 'artProfile')" data-i18n="tabArtProfile">Herramientas 3D</button>
+        </div>
 
-        <!-- === GRUPO 1: PROGRAMACIÓN Y DESARROLLO === -->
-        <div class="tech-group">
-          <!-- Lenguajes de Programación -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-code">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg></span> <span data-i18n="catDev">Lenguajes de Programación</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-python-plain colored skill-icon"></i>
-                <span>Python</span>
+        <!-- Tab: Perfil Técnico -->
+        <div id="techProfile" class="tab-content active">
+          <div class="tech-categories-container">
+            <div class="tech-group">
+              <!-- Lenguajes de Programación -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+                  <span data-i18n="catDev">Lenguajes de Programación</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><i class="devicon-python-plain colored skill-icon"></i><span>Python</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-javascript-plain colored skill-icon"></i><span>JavaScript</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-java-plain colored skill-icon"></i><span>Java</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-php-plain colored skill-icon"></i><span>PHP</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-mysql-plain colored skill-icon"></i><span>SQL</span></div>
+                </div>
               </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-javascript-plain colored skill-icon"></i>
-                <span>JavaScript</span>
+
+              <!-- Motores de Videojuegos -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></span>
+                  <span data-i18n="catGames">Motores de Videojuegos</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/Unreal.webp" alt="Unreal Engine" class="skill-icon-img" loading="lazy" /><span>Unreal Engine</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/Unity.webp" alt="Unity" class="skill-icon-img" loading="lazy" /><span>Unity</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-godot-plain colored skill-icon"></i><span>Godot</span></div>
+                </div>
               </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-java-plain colored skill-icon"></i>
-                <span>Java</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-php-plain colored skill-icon"></i>
-                <span>PHP</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-mysql-plain colored skill-icon"></i>
-                <span>SQL</span>
+
+              <!-- Herramientas de Desarrollo -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span>
+                  <span data-i18n="catDevTools">Herramientas de Desarrollo</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><i class="devicon-vscode-plain colored skill-icon"></i><span>VS Code</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-docker-plain colored skill-icon"></i><span>Docker</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-postgresql-plain colored skill-icon"></i><span>PostgreSQL</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-git-plain colored skill-icon"></i><span>Git</span></div>
+                  <div class="skill-card shimmer-effect"><i class="devicon-github-original skill-icon" style="color: #fff"></i><span>GitHub</span></div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Motores de Videojuegos -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-play-circle">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                </svg></span> <span data-i18n="catGames">Motores de Videojuegos</span>
+        <!-- Tab: Perfil Artístico -->
+        <div id="artProfile" class="tab-content">
+          <div class="tech-categories-container">
+            <div class="tech-group">
+              <!-- Modelado y Escultura 3D -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><circle cx="11" cy="11" r="2"></circle></svg></span>
+                  <span data-i18n="cat3D">Modelado y Escultura 3D</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/blender.webp" alt="Blender" class="skill-icon-img" loading="lazy" /><span>Blender</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/zbrush.webp" alt="ZBrush" class="skill-icon-img" loading="lazy" /><span>ZBrush</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/max.webp" alt="3ds Max" class="skill-icon-img" loading="lazy" /><span>3ds Max</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/maya.webp" alt="Maya" class="skill-icon-img" loading="lazy" /><span>Maya</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/rhino.webp" alt="Rhino3D" class="skill-icon-img" loading="lazy" /><span>Rhino3D</span></div>
+                </div>
+              </div>
+
+              <!-- Texturizado -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></span>
+                  <span data-i18n="catTexturing">Texturizado</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/SubstanceP.webp" alt="Substance Painter" class="skill-icon-img" loading="lazy" /><span>S. Painter</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/substanceD.webp" alt="Substance Designer" class="skill-icon-img" loading="lazy" /><span>S. Designer</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/TOOLBAG.webp" alt="Marmoset Toolbag" class="skill-icon-img" loading="lazy" /><span>Marmoset</span></div>
+                </div>
+              </div>
+
+              <!-- Motores de Render -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg></span>
+                  <span data-i18n="catRender">Motores de Render</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/Vray.webp" alt="V-Ray" class="skill-icon-img" loading="lazy" /><span>V-Ray</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/arnold.webp" alt="Arnold" class="skill-icon-img" loading="lazy" /><span>Arnold</span></div>
+                  <div class="skill-card shimmer-effect"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="skill-icon" style="color: #ff9900"><circle cx="12" cy="12" r="10"></circle></svg><span>Cycles</span></div>
+                </div>
+              </div>
             </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/Unreal.png" alt="Unreal Engine" class="skill-icon-img" />
-                <span>Unreal Engine</span>
+
+            <div class="tech-group">
+              <!-- VFX y Simulación -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></span>
+                  <span data-i18n="catVFX">VFX y Simulación</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/RealFlow.webp" alt="RealFlow" class="skill-icon-img" loading="lazy" /><span>RealFlow</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/MD.webp" alt="Marvelous Designer" class="skill-icon-img" loading="lazy" /><span>Marvelous</span></div>
+                </div>
               </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/Unity.png" alt="Unity" class="skill-icon-img" />
-                <span>Unity</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-godot-plain colored skill-icon"></i>
-                <span>Godot</span>
+
+              <!-- Postproducción y Diseño -->
+              <div class="tech-category">
+                <div class="tech-category-label">
+                  <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line></svg></span>
+                  <span data-i18n="catPost">Postproducción y Diseño</span>
+                </div>
+                <div class="skills-grid">
+                  <div class="skill-card shimmer-effect"><img src="img/Ps.webp" alt="Photoshop" class="skill-icon-img" loading="lazy" /><span>Photoshop</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/Premier.webp" alt="Premiere Pro" class="skill-icon-img" loading="lazy" /><span>Premiere Pro</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/aftereffects.webp" alt="After Effects" class="skill-icon-img" loading="lazy" /><span>After Effects</span></div>
+                  <div class="skill-card shimmer-effect"><img src="img/Nuke.webp" alt="Nuke" class="skill-icon-img" loading="lazy" /><span>Nuke</span></div>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- Herramientas de Desarrollo (Movido al Grupo 1) -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-tool">
-                  <path
-                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
-                  </path>
-                </svg></span> Herramientas de Desarrollo
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-vscode-plain colored skill-icon"></i>
-                <span>VS Code</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvinjxr8MVZ69diNIbNNMfcUljy04dIjkqPQ&s"
-                  alt="Antigravity" class="skill-icon-img" />
-                <span>Antigravity</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-docker-plain colored skill-icon"></i>
-                <span>Docker</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-postgresql-plain colored skill-icon"></i>
-                <span>PostgreSQL</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <i class="devicon-github-original skill-icon" style="color: #fff"></i>
-                <span>GitHub</span>
-              </div>
-            </div>
-          </div>
-        </div> <!-- Cierre Grupo 1 -->
-
-        <!-- === GRUPO 2: ARTE Y 3D === -->
-        <div class="tech-group">
-
-          <!-- Modelado y Escultura 3D -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-pen-tool">
-                  <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-                  <path d="M2 2l7.586 7.586"></path>
-                  <circle cx="11" cy="11" r="2"></circle>
-                </svg></span> <span data-i18n="cat3D">Modelado y Escultura 3D</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/blender.png" alt="Blender" class="skill-icon-img" />
-                <span>Blender</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/zbrush.png" alt="ZBrush" class="skill-icon-img" />
-                <span>ZBrush</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/max.png" alt="3ds Max" class="skill-icon-img" />
-                <span>3ds Max</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/rhino.jpg" alt="Rhino3D" class="skill-icon-img" />
-                <span>Rhino3D</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Texturizado -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-edit-2">
-                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                </svg></span> <span data-i18n="catTexturing">Texturizado</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/SubstanceP.png" alt="Substance Painter" class="skill-icon-img" />
-                <span>S. Painter</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/substanceD.png" alt="Substance Designer" class="skill-icon-img" />
-                <span>S. Designer</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/TOOLBAG.png" alt="Marmoset Toolbag" class="skill-icon-img" />
-                <span>Marmoset</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Motores de Render -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-sun">
-                  <circle cx="12" cy="12" r="5"></circle>
-                  <line x1="12" y1="1" x2="12" y2="3"></line>
-                  <line x1="12" y1="21" x2="12" y2="23"></line>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                  <line x1="1" y1="12" x2="3" y2="12"></line>
-                  <line x1="21" y1="12" x2="23" y2="12"></line>
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg></span> <span data-i18n="catRender">Motores de Render</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/Vray.png" alt="V-Ray" class="skill-icon-img" />
-                <span>V-Ray</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/arnold.webp" alt="Arnold" class="skill-icon-img" />
-                <span>Arnold</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-aperture skill-icon" style="color: #ff9900">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-                  <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
-                  <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
-                  <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
-                  <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
-                  <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
-                </svg>
-                <span>Cycles</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- VFX y Simulación -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-wind">
-                  <path
-                    d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
-                  </path>
-                </svg></span> <span data-i18n="catVFX">VFX y Simulación</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/RealFlow.png" alt="RealFlow" class="skill-icon-img" />
-                <span>RealFlow</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/MD.png" alt="Marvelous Designer" class="skill-icon-img" />
-                <span>Marvelous</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Postproducción y Diseño -->
-          <div class="tech-category">
-            <div class="tech-category-label">
-              <span class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-film">
-                  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                  <line x1="7" y1="2" x2="7" y2="22"></line>
-                  <line x1="17" y1="2" x2="17" y2="22"></line>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <line x1="2" y1="7" x2="7" y2="7"></line>
-                  <line x1="2" y1="17" x2="7" y2="17"></line>
-                  <line x1="17" y1="17" x2="22" y2="17"></line>
-                  <line x1="17" y1="7" x2="22" y2="7"></line>
-                </svg></span> <span data-i18n="catPost">Postproducción y Diseño</span>
-            </div>
-            <div class="skills-grid">
-              <div class="skill-card shimmer-effect">
-                <img src="img/Ps.png" alt="Photoshop" class="skill-icon-img" />
-                <span>Photoshop</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/Premier.png" alt="Premiere Pro" class="skill-icon-img" />
-                <span>Premiere Pro</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/aftereffects.png" alt="After Effects" class="skill-icon-img" />
-                <span>After Effects</span>
-              </div>
-              <div class="skill-card shimmer-effect">
-                <img src="img/Nuke.png" alt="Nuke" class="skill-icon-img" />
-                <span>Nuke</span>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
-      </div> <!-- Cierre Grupo 2 -->
-      </div> <!-- Cierre tech-categories-container -->
     </section>
+
 
     <!-- Modal para Proyectos -->
     <div id="myModal" class="modal">
@@ -904,27 +795,20 @@
         </div>
         <h3 data-i18n="contactTitle">Contacto</h3>
       </div>
-      <div class="contact-wrapper">
+      <div class="contact-wrapper contact-direct">
         <p class="contact-intro" data-i18n="contactIntro">¿Tienes un proyecto en mente? Escríbeme y hablemos.</p>
-        <form class="contact-form" action="https://formspree.io/f/xvgzogrq" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name" data-i18n="labelName">Nombre</label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre" data-i18n="placeholderName" required>
-            </div>
-            <div class="form-group">
-              <label for="email" data-i18n="labelEmail">Correo Electrónico</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" data-i18n="placeholderEmail"
-                required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="message" data-i18n="labelMessage">Mensaje</label>
-            <textarea id="message" name="message" rows="5" placeholder="Cuéntame sobre tu proyecto..."
-              data-i18n="placeholderMessage" required></textarea>
-          </div>
-          <button type="submit" class="btn-submit" data-i18n="submitBtn">Enviar mensaje</button>
-        </form>
+        <div class="contact-cards">
+          <a href="mailto:criis.sb.9@gmail.com" class="contact-card shimmer-effect">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span class="contact-card-label">Email</span>
+            <span class="contact-card-value">criis.sb.9@gmail.com</span>
+          </a>
+          <a href="tel:+51926445334" class="contact-card shimmer-effect">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span class="contact-card-label" data-i18n="contactPhone">Teléfono</span>
+            <span class="contact-card-value">+51 926445334</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -940,8 +824,8 @@
     </div>
     <p data-i18n="footerRights">&copy; 2026 Christian Mora Damian. Todos los derechos reservados.</p>
     
-    <!-- Easter Egg Clandestino (Controlado por canvasVFX.js) -->
-    <img src="img/gato_rayo.gif" alt="Easter Egg" id="easterCat" style="display:none; position:fixed; bottom:20px; right:20px; width:150px; z-index:9999; pointer-events:none;" />
+    <!-- Easter Egg Image -->
+    <img src="img/gato_rayo.gif" alt="Easter Egg" id="easterCat" style="display:none; position:fixed; width:150px; z-index:9999; pointer-events:none;" loading="lazy" />
   </footer>
 
   <!-- Back to Top -->

@@ -15,19 +15,23 @@
     var combo = 0;
     var lastClick = 0;
 
-    var COLORES = [[0, 255, 65], [0, 150, 70], [20, 130, 50]];
-    var COLORES_OVERDRIVE = [[0, 255, 65], [255, 255, 255]];
+    var COLORES = [[56, 189, 248], [2, 132, 199], [167, 139, 250], [14, 116, 180]];
+    var COLORES_OVERDRIVE = [[56, 189, 248], [167, 139, 250], [255, 255, 255]];
 
     window.addEventListener('resize', function() {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
     });
 
-    function triggerGatoRayo() {
+    function triggerGatoRayo(x, y) {
         const gato = document.getElementById('easterCat');
         if (!gato) return;
         gato.style.display = 'block';
-        gato.animate([{opacity: 0, transform: 'translateY(50px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: 500, fill: 'forwards'});
+        // Posicionar centrado en el cursor (150px de ancho / 2 = 75px)
+        gato.style.left = (x - 75) + 'px';
+        gato.style.top = (y - 75) + 'px';
+        
+        gato.animate([{opacity: 0, transform: 'scale(0.5)'}, {opacity: 1, transform: 'scale(1)'}], {duration: 500, fill: 'forwards'});
         setTimeout(() => {
             gato.animate([{opacity: 1}, {opacity: 0}], {duration: 1500, fill: 'forwards'}).onfinish = () => gato.style.display = 'none';
         }, 3000); 
@@ -86,7 +90,7 @@
         }
 
         if (overdrive) {
-            triggerGatoRayo();
+            triggerGatoRayo(e.clientX, e.clientY);
             combo = 0; 
         }
     });
@@ -115,7 +119,7 @@
             
             if (p.overdrive) {
                 ctx.shadowBlur = 10;
-                ctx.shadowColor = 'rgba(0, 255, 65, 0.8)';
+                ctx.shadowColor = 'rgba(56, 189, 248, 0.8)';
             } else {
                 ctx.shadowBlur = 0;
             }

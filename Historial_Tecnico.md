@@ -2,6 +2,40 @@
 
 Este archivo registra las modificaciones y la estructura progresiva del portafolio Rex-3D de Christian Mora.
 
+## [2026-05-13] Ajustes de Interfaz y Mejora de Servicios
+- **Limpieza de Hero**: Se eliminó definitivamente la barra de estadísticas para mantener el foco 100% en la descripción y el CTA de descarga.
+- **Navegación Móvil**: Se alinearon los íconos del menú de navegación hacia la izquierda en la cabecera móvil (`justify-content: flex-start`).
+- **Upgrade Estético (Servicios)**: Se rediseñaron las tarjetas de "Desarrollo & Automatización" con gradientes sutiles tipo *glassmorphism*, sombras mejoradas (`box-shadow`), tipografía más limpia y efectos de hover profundos para un look premium.
+
+## [2026-05-13] Ajuste de Hero: Skills en Stats Bar
+- **Internacionalización**: Se actualizaron las nuevas secciones para soportar 100% bilingüismo vía `i18n.js` y `data-i18n`. Instagram se corrigió a `@rex.3d1`.
+
+## [2026-05-13] Rediseño Premium del Hero (Resumen)
+- Implementación de Hero panorámico, anillo brillante (`glow-ring`) y tarjeta horizontal de "Conecta conmigo".
+- **Botones y Contacto**: Se incluyeron botones primarios/secundarios interactivos (Ver proyectos, Descargar CV apuntando al nuevo PDF). Además, los enlaces de contacto se estilizaron como "chips" elegantes debajo de la descripción.
+- **Nueva Sección Conecta**: La antigua grilla de links se transformó en una barra horizontal elegante (`connect-section`) con divisores de gradiente.
+
+## [2026-05-13] Corrección de Tabs y Limpieza de Imágenes
+
+## [2026-05-13] Refactor Estético y Optimización de Rendimiento
+- **Reordenamiento**: Sección "Desarrollo & Automatización" movida ANTES de "Proyectos Destacados".
+- **Tabs Software**: Sección "Software & Tecnologías" dividida en tabs "Perfil Técnico" y "Perfil Artístico".
+- **Nueva Paleta**: Gradiente cian→violeta (#38bdf8→#a78bfa). Viñeta, glows y partículas actualizados.
+- **Rendimiento**: Preconnect a Google Fonts/jsdelivr, preload LCP image, fetchpriority/decoding en profile.jpeg.
+- **JS Cleanup**: Eliminadas traducciones duplicadas de main.js (~4KB). Motor i18n centralizado en i18n.js.
+- **Hero Restructura**: Foto movida a la derecha. Datos de contacto (email/teléfono) agregados en el hero.
+- **Hero Responsive**: Imagen de perfil reposicionada debajo del label de "Technical Artist" en vista móvil. Alineación corregida en vista desktop.
+- **Header**: Eliminado "Christian Mora" del header (logo-link oculto) y menú de navegación ahora perfectamente centrado.
+- **Contacto**: Formulario reemplazado por tarjetas directas (email + teléfono) con datos reales.
+- **Optimización WebP**: Las 29 imágenes (incluyendo perfil y miniaturas de software) fueron convertidas de `.png`/`.jpg` a formato `.webp` automatizado en Python para máxima compresión, mejorando el First Contentful Paint.
+- **Easter Egg (Interactivo)**: El GIF secreto `gato_rayo.gif` ahora aparece dinámicamente centrado sobre las coordenadas exactas del ratón (`e.clientX`, `e.clientY`) y flota sobre el viewport usando `position: fixed` tras detonar el combo.
+- **Imágenes Servicios**: 4 imágenes regeneradas con paleta cian→violeta (serv_web, serv_bots, serv_desktop, serv_auto).
+- **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/main.js`, `js/canvasVFX.js`, `js/i18n.js`, `img/serv_*.png`.
+
+## [2026-05-12] Adición de Git y Cambio de Paleta de Colores
+- Paleta verde Matrix → azul cian/hielo. Sincronización de partículas con nueva paleta.
+- Archivos: `index.html`, `CSS/styles.css`, `js/canvasVFX.js`, `js/main.js`.
+
 ## [2026-04-09] Mejora de Layout y Corrección de Hero (Typing Effect)
 - **Cambio**: Se incrementó el `max-width` de `.main-content` a **1300px**.
 - **Cambio**: Refactorización del efecto de escritura (`typingText`) para soportar múltiples idiomas dinámicamente.
