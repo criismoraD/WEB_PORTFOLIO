@@ -821,13 +821,12 @@ nav ul li a.active {
 }
 
 .connect-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .connect-card {
-  flex: 1 1 200px;
   display: flex;
   align-items: center;
   gap: 1rem;

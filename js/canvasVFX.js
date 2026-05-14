@@ -26,6 +26,7 @@
 
     // Posicionar el gato en coordenadas X,Y del clic/tap
     function triggerGatoRayo(x, y) {
+        if (window.innerWidth <= 768) return; // Eliminar gato rayo en móvil
         const gato = document.getElementById('easterCat');
         if (!gato) return;
 
