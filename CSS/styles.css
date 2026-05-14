@@ -77,7 +77,7 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  pointer-events: auto; /* Allow mousemove capture if needed, otherwise none */
+  pointer-events: none; /* NUNCA interceptar toques — los eventos van en window */
 }
 
 /* --- Reset & Base --- */

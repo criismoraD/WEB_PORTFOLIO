@@ -33,7 +33,7 @@
         const gatoW = 150;
         const gatoH = 150;
         let posX = Math.min(Math.max(x - gatoW / 2, 5), window.innerWidth  - gatoW - 5);
-        let posY = Math.min(Math.max(y - gatoH,      5), window.innerHeight - gatoH - 5);
+        let posY = Math.min(Math.max(y - gatoH / 2, 5), window.innerHeight - gatoH - 5);
 
         gato.style.left   = posX + 'px';
         gato.style.top    = posY + 'px';
