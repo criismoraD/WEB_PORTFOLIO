@@ -2117,6 +2117,19 @@ nav ul li a .nav-icon {
     color: var(--accent-light);
   }
 
+  /* Fix: Forzar el wrapper de idioma a participar en el flex del header */
+  .header-lang-wrapper {
+    position: static !important;
+    right: auto !important;
+    flex-shrink: 0;
+    z-index: 1001;
+  }
+
+  /* Separar un poco la imagen del texto */
+  .subtitle-label {
+    margin-top: 0.8rem;
+  }
+
   /* Remove bottom padding since nav is at the top again */
   .main-content {
     padding-bottom: 0px; 
