@@ -100,3 +100,15 @@ Este archivo registra las modificaciones y la estructura progresiva del portafol
     - **Estructura**: Asignación de `id="habilidades"` a la sección de skills para permitir el anclaje directo.
 - **i18n**: Adición de la clave `nav_skills` en los diccionarios de español e inglés.
 - **Archivos afectados**: `index.html`, `js/i18n.js`.
+
+### [2026-05-26] Eliminación de Sección de Contacto
+- **Limpieza de HTML**: Eliminación completa de la sección "Contacto" del final de la página (`index.html`).
+- **Navegación**: Eliminación del enlace "Contacto" del menú de navegación principal.
+- **CSS**: Eliminación de estilos asociados a la sección de contacto (`.contact-direct`, `.contact-cards`, `.contact-card`, etc.) y formulario de contacto.
+- **i18n**: Eliminación de traducciones relacionadas con contacto en `i18n.js` y `main.js`.
+- **Archivos afectados**: `index.html`, `CSS/styles.css`, `js/i18n.js`, `js/main.js`.
+
+### [2026-05-26] Fix i18n: Skills en inglés al cargar
+- **Problema**: Dos motores de traducción en conflicto (`i18n.js` y `main.js`). Al cargar la página, `i18n.js` no tenía las claves de habilidades (`skillOptimization`, `skillProcedural`, etc.) y el motor de `main.js` solo se ejecutaba al hacer click.
+- **Solución**: Agregadas todas las claves faltantes de skills/trayectoria/software al diccionario de `i18n.js` y eliminado el motor duplicado de `main.js` (sección 13 completa).
+- **Archivos afectados**: `js/i18n.js`, `js/main.js`.
